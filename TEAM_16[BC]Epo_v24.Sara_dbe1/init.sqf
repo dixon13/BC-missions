@@ -15,13 +15,6 @@ if (!didJIP) then {
 //Call BC Template
 [] execVM "f\bcInit.sqf";
 
-//Call player randomstart
-[] execVM "scripts\randomstart\server.sqf";
-[] execVM "scripts\randomstart\client.sqf";
-
-//Call item randomspawn
-["randItemsMarker"] execVM "scripts\randomloot\server.sqf";
-
 // ==================================================
 // ==================================================
 // DO NOT CALL ANY SCRIPTS BELOW THIS LINE

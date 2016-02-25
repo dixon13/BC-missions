@@ -35,8 +35,14 @@ itemsHighlyCommon = [["Binocular", "item"],
                      ["acc_flashlight", "item"]
 					];
 
+// struct for desire to be able to set individual probabilities under a class of rarity
+/*itemsStructure = [
+    [80, ["name", "type"]],
+    [20, ["name", "type"]]
+];*/
+
 // 30%
-// Ammunition, attachments, smokes
+// Ammunition, smokes, grenades
 itemsCommon = [
 			   ["rhs_mag_30Rnd_556x45_Mk318_Stanag", "mag"],
 			   ["rhs_30Rnd_762x39mm", "mag"],
@@ -66,10 +72,10 @@ itemsCommon = [
 			   ["optic_Holosight", "item"],
 			   ["optic_Yorris", "item"],
 			   ["muzzle_snds_acp", "item"]
-			   ];*/
+*/
 
 // 19%
-// Weapons, grenades
+// Special utilities, attachments
 itemsUncommon = [
 				 ["Rangefinder", "item"],
 				 ["ToolKit", "item"],
@@ -89,16 +95,16 @@ itemsHighlyUncommon = [["rhs_weap_ak103", "weapon"],
 				       ["rhs_weap_akm", "weapon"],
 				       ["rhs_weap_m16a4", "weapon"],
 				       ["rhs_weap_m4", "weapon"],
-				       ["rhs_weap_m4_carryhandle", "weapon"],
-                       ["rhs_10Rnd_762x54mmR_7N1", "mag"]
+				       ["rhs_weap_m4_carryhandle", "weapon"]
 					  ];
 
 // 4%
 // RPGs
 itemsRare = [["NVGoggles", "item"],
-			 ["DemoCharge_F", "item"],
-			 ["SatchelCharge_F", "item"]
+             ["rhs_10Rnd_762x54mmR_7N1", "mag"]
             ];
+//["DemoCharge_F", "item"],
+//["SatchelCharge_F", "item"],
 
 // 1%
 itemsExtremelyRare = [["rhs_weap_M136_hedp", "weapon"],
