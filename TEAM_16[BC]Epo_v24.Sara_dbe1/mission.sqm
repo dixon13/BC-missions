@@ -8,18 +8,18 @@ class EditorData
 	toggles=1;
 	class ItemIDProvider
 	{
-		nextID=449;
+		nextID=451;
 	};
 	class MarkerIDProvider
 	{
-		nextID=50;
+		nextID=52;
 	};
 	class Camera
 	{
-		pos[]={12514.627,206.28391,14975.982};
-		dir[]={-0.022451105,-0.63300562,0.77398258};
-		up[]={-0.018357351,0.77408886,0.63283575};
-		aside[]={0.99968457,-8.1359758e-008,0.028997496};
+		pos[]={12387.685,211.83258,14777.764};
+		dir[]={0,-0.70710683,0.70710683};
+		up[]={0,0.70710677,0.70710677};
+		aside[]={0.99999994,0,-0};
 	};
 };
 binarizationWanted=0;
@@ -51,24 +51,6 @@ class CustomAttributes
 		name="Multiplayer";
 		class Attribute0
 		{
-			property="RespawnTemplates";
-			expression="true";
-			class Value
-			{
-				class data
-				{
-					class type
-					{
-						type[]=
-						{
-							"ARRAY"
-						};
-					};
-				};
-			};
-		};
-		class Attribute1
-		{
 			property="RespawnButton";
 			expression="true";
 			class Value
@@ -83,6 +65,24 @@ class CustomAttributes
 						};
 					};
 					value=1;
+				};
+			};
+		};
+		class Attribute1
+		{
+			property="RespawnTemplates";
+			expression="true";
+			class Value
+			{
+				class data
+				{
+					class type
+					{
+						type[]=
+						{
+							"ARRAY"
+						};
+					};
 				};
 			};
 		};
@@ -141,7 +141,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=42;
+		items=43;
 		class Item0
 		{
 			dataType="Logic";
@@ -1728,7 +1728,7 @@ class Mission
 			side="Empty";
 			class Attributes
 			{
-				name="obj1";
+				name="objectiveObject";
 			};
 			id=319;
 			type="RHS_Ural_Fuel_VV_01";
@@ -2197,7 +2197,7 @@ class Mission
 		{
 			dataType="Marker";
 			position[]={12520.031,180,14996.281};
-			name="marker_35";
+			name="objMarker";
 			text="Objective";
 			type="hd_objective";
 			colorName="ColorRed";
@@ -2606,13 +2606,25 @@ class Mission
 		class Item41
 		{
 			dataType="Marker";
-			position[]={12585.727,181.9342,15133.22};
+			position[]={12833.985,183.67004,15067.5};
 			name="randItemsMarker";
 			markerType="ELLIPSE";
 			type="ellipse";
-			a=500;
-			b=500;
+			a=300;
+			b=300;
 			id=416;
+		};
+		class Item42
+		{
+			dataType="Marker";
+			position[]={7622.8159,12.530742,6435.5762};
+			name="objAreaMarker";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=200;
+			b=250;
+			angle=319.745;
+			id=449;
 		};
 	};
 	class Connections

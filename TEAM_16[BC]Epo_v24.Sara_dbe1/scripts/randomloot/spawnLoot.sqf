@@ -3,13 +3,14 @@ _pos=	(_this select 0);
 _pos0=	(_pos select 0);
 _pos1=	(_pos select 1);
 _pos2=	(_pos select 2);
-_showLootType=	(_this select 1);
-_showLootRarity=(_this select 2);
+_size=  (_this select 1);
+_showLootType=	(_this select 2);
+_showLootRarity=(_this select 3);
 
 // Determine Z placement for item
 _BARREL = createVehicle ["Land_BarrelEmpty_F",[_pos0,_pos1,_pos2+0.1], [], 0, "can_Collide"];
 sleep 0.5;
-_holder = createVehicle ["groundweaponholder",[_pos0,_pos1,(getposATL _BARREL select 2)], [], 0, "can_Collide"];
+_holder = createVehicle ["groundweaponholder",[_pos0,_pos1,(getposATL _BARREL select 2) + 0.05], [], 0, "can_Collide"];
 deletevehicle _BARREL;
 
 _rarityHighlyCommon = 30;
@@ -62,7 +63,7 @@ showMarker = {
     _debug setMarkerShape "ICON";
     _debug setMarkerType "hd_dot";
     _debug setMarkerColor "ColorRed";
-    _txt=format ["%1",_marker];
+    _txt=format ["%1 %2",_marker,_size];
     _debug setMarkerText _txt;
 };
     

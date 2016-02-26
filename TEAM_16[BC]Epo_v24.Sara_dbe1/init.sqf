@@ -15,6 +15,9 @@ if (!didJIP) then {
 //Call BC Template
 [] execVM "f\bcInit.sqf";
 
+//Call Fireteam Gamemode
+[] execVM "scripts\fireteam.sqf";
+
 // ==================================================
 // ==================================================
 // DO NOT CALL ANY SCRIPTS BELOW THIS LINE
