@@ -83,7 +83,7 @@ nextObjectiveType = {
 };
 
 moveTriggersAndMarkers = {
-    private ["_nextLoc","_objPos","_nextType","_typeName"];
+    private ["_nextLoc","_objPos","_nextType","_typeName","_3dObjPos","_objSize","_objHold"];
     _nextLoc = _this select 0;
     _objPos = _this select 1;
     
@@ -91,24 +91,41 @@ moveTriggersAndMarkers = {
     _typeName = _nextType select 0;
     
     _3dObjPos = [_objPos select 0, _objPos select 1, 0];
-    objBlue setPos _3dObjPos;
-    //objBlue setSize [50,50];
-    objRed setPos _3dObjPos;
-    objGreen setPos _3dObjPos;
-    objPurple setPos _3dObjPos;
-    objBlueSeize setPos _3dObjPos;
-    objRedSeize setPos _3dObjPos;
-    objGreenSeize setPos _3dObjPos;
-    objPurpleSeize setPos _3dObjPos;
+    _objSize = [50,50];
+    
+    switch (_typeName) do {
+        case "Hold": {
+            objBlue setPos _3dObjPos;
+            objBlue setSize _objSize;
+            objBlueSeize setPos _3dObjPos;
+            objBlueSeize setSize _objSize;
+
+            objRed setPos _3dObjPos;
+            objRed setSize _objSize;
+            objRedSeize setPos _3dObjPos;
+            objRedSeize setSize _objSize;
+
+            objGreen setPos _3dObjPos;
+            objGreen setSize _objSize;
+            objGreenSeize setPos _3dObjPos;
+            objGreenSeize setSize _objSize;
+
+            objPurple setPos _3dObjPos;
+            objPurple setSize _objSize;
+            objPurpleSeize setPos _3dObjPos;
+            objPurpleSeize setSize _objSize;
+
+            _objHold = createMarker ["objHold",_objPos];
+            _objHold setMarkerShape "ELLIPSE";
+            _objHold setMarkerSize [50, 50];
+            _objHold setMarkerBrush "SolidBorder";
+            _objHold setMarkerColor "ColorUNKNOWN";
+        };
+    };
     
     _objMarker = "objMarker";
     _objMarker setMarkerPos _objPos;
     _objMarker setMarkerText _typeName;
-    
-    _objHold = "objHold";
-    _objHold setMarkerPos _objPos;
-    _objHold setMarkerColor "ColorUNKNOWN";
-    
 };
 
 randItemSpawn = {
