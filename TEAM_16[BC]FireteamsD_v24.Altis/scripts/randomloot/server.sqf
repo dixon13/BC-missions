@@ -1,39 +1,42 @@
 if (!isServer) exitWith {};
 
 // Set probability of loot spawning 1-100%
-_probability=70; //default 25
+_probability=100; //default 25
 
 // Set the max amount of spawns per building
-_maxSpawns = 1; // default 8
+_maxItemSpawns = 100; // default 8
 
 // Show loot position and type on map (Debugging)
-_showLootType=true;
-_showLootRarity=true;
+_showLootType=false;
+_showLootRarity=false;
 
 // 37%
 // Backpacks, vests, utilities
 itemsHighlyCommon = [["Binocular", "item"],
 					 ["FirstAidKit", "item"],
 					 ["B_AssaultPack_blk", "backpack"],
-					 ["B_AssaultPack_cbr", "backpack"],
-					 ["B_AssaultPack_khk", "backpack"],
-					 ["B_Carryall_cbr", "backpack"],
-					 ["B_Carryall_khk", "backpack"],
 					 ["B_Carryall_mcamo", "backpack"],
 					 ["B_FieldPack_blk", "backpack"],
-					 ["B_FieldPack_cbr", "backpack"],
-					 ["B_FieldPack_khk", "backpack"],
 					 ["MNP_B_ROK_KB", "backpack"],
 					 ["MNP_B_RU1_FP", "backpack"],
 					 ["Chemlight_green", "item"],
 					 ["Chemlight_blue", "item"],
 					 ["Chemlight_red", "item"],
 					 ["Chemlight_yellow", "item"],
-					 ["ItemCompass", "item"],
 					 ["MNP_Vest_USMC_Xtreme_A", "vest"],
 					 ["MNP_Vest_UKR_A", "vest"],
-                     ["acc_flashlight", "item"]
+                     ["acc_flashlight", "item"],
+                     ["rhs_acc_2dpZenit", "item"]
 					];
+
+/* Unused commons
+["B_AssaultPack_cbr", "backpack"],
+					 ["B_AssaultPack_khk", "backpack"],
+["B_Carryall_cbr", "backpack"],
+					 ["B_Carryall_khk", "backpack"],
+["B_FieldPack_cbr", "backpack"],
+					 ["B_FieldPack_khk", "backpack"],
+*/
 
 // struct for desire to be able to set individual probabilities under a class of rarity
 /*itemsStructure = [
@@ -45,17 +48,14 @@ itemsHighlyCommon = [["Binocular", "item"],
 // Ammunition, smokes, grenades
 itemsCommon = [
 			   ["rhs_mag_30Rnd_556x45_Mk318_Stanag", "mag"],
-			   ["rhs_30Rnd_762x39mm", "mag"],
-			   ["rhs_30Rnd_545x39_AK", "mag"],
-			   ["rhs_acc_2dpZenit", "item"],
-			   ["rhsusf_weap_m1911a1", "weapon"],
+			   ["rhs_30Rnd_762x39mm", "mag"]
+			  ];
+/*No pistol shit for now
+               ["rhsusf_weap_m1911a1", "weapon"],
                ["rhsusf_mag_7x45acp_MHP", "mag"],
 			   ["rhs_weap_makarov_pmm", "weapon"],
-               ["rhs_mag_9x18_12_57N181S", "mag"],
-               ["SmokeShell", "item"],
-			   ["HandGrenade", "item"],
-			   ["MiniGrenade", "item"]
-			  ];
+               ["rhs_mag_9x18_12_57N181S", "mag"]
+*/
                 //["30Rnd_556x45_Stanag_Tracer_Red", "mag"],
 				 //["rhs_weapon_240B", "mag"],
 				 /*["rhs_weap_m16a4", "weapon_mag"],
@@ -84,14 +84,17 @@ itemsUncommon = [
                  ["rhs_acc_pso1m2", "item"],
                  ["rhsusf_acc_rotex5_grey", "item"],
                  ["rhsusf_acc_ACOG_USMC", "item"],
-                 ["rhsusf_acc_harris_bipod", "item"]
+                 ["rhsusf_acc_harris_bipod", "item"],
+                 ["SmokeShell", "item"],
+			     ["HandGrenade", "item"],
+			     ["MiniGrenade", "item"]
 				];
 
 // 9%
 // rare weapons (high powered), utilities (NVG, rangefinder), rare attachments (long range scopes, silencers), explosives
 itemsHighlyUncommon = [["rhs_weap_ak103", "weapon"],
-				       ["rhs_weap_ak74m_camo", "weapon"],
 				       ["rhs_weap_akm", "weapon"],
+                       ["rhs_weap_akms", "weapon"],
 				       ["rhs_weap_m16a4", "weapon"],
 				       ["rhs_weap_m4", "weapon"],
 				       ["rhs_weap_m4_carryhandle", "weapon"]
@@ -127,24 +130,21 @@ if (_mkrY > _mkrX) then {
 };
 
  _houseList= _pos nearObjects ["House",_distance];
-
+ _numHouses = count _houseList;
 { // foreach in _houseList
-	_house=_X;
+    _spawnCheck = false;
+    if (400 > random _numHouses) then {_spawnCheck=true};
+    if (_spawnCheck) then {
+    _house=_X;
 
 	if (!(typeOf _house in _exclusionList)) then {
         // Using sizeOf
         _buildingSize = sizeOf (typeOf _house);
-
-        // Using boundingBoxReal
-        /*_bbr = boundingBoxReal _house;
-        _p1 = _bbr select 0;
-        _p2 = _bbr select 1;
-        _maxWidth = abs ((_p2 select 0) - (_p1 select 0));
-        _maxLength = abs ((_p2 select 1) - (_p1 select 1));
-        _maxHeight = abs ((_p2 select 2) - (_p1 select 2));
-        _buildingSize = _maxWidth * _maxLength * (_maxHeight/2);*/
+        _numItemSpawns = _buildingSize;
         
-		for "_n" from 1 to _maxSpawns * _buildingSize do {
+        if (_numItemSpawns > _maxItemSpawns) then {_numItemSpawns = _maxItemSpawns};
+        
+		for "_n" from 1 to _numItemSpawns do {
 			_buildingPos = _house buildingPos _n;
             
 			if (str _buildingPos == "[0,0,0]") exitwith {};
@@ -153,4 +153,5 @@ if (_mkrY > _mkrX) then {
 				};
 			};
 		};
+    };
 } foreach _houseList;

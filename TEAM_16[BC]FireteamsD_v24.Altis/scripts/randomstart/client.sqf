@@ -38,6 +38,12 @@ switch (side player) do {
         _text = "INDFOR Starting Zone"; 
         _color = "ColorGUER";
     };
+    case civilian: {
+        _randomizeTeam = _randomizeCivilian;
+        _placemark = _placeMarkerCivilian;
+        _text = "CIV Starting Zone"; 
+        _color = "ColorCIV";
+    };
     default {_randomizeTeam = false;};
 };
 
@@ -53,6 +59,7 @@ if (_randomizeTeam) then {
             case west: {_randomMarker = missionNamespace getVariable ["bc_randomMarkerWest",nil];};
             case east: {_randomMarker = missionNamespace getVariable ["bc_randomMarkerEast",nil];};
             case independent: {_randomMarker = missionNamespace getVariable ["bc_randomMarkerIndependent",nil];};
+            case civilian: {_randomMarker = missionNamespace getVariable ["bc_randomMarkerCivilian",nil];};
             };
             false
         } else {true};
@@ -90,4 +97,5 @@ if (_randomizeTeam) then {
     if (!isNil "bc_randomMarkerWest") then {diag_log format["[randomstart] BLUFOR started at = %1",bc_randomMarkerWest];};
     if (!isNil "bc_randomMarkerEast") then {diag_log format["[randomstart] REDFOR started at = %1",bc_randomMarkerEast];};
     if (!isNil "bc_randomMarkerIndependent") then {diag_log format["[randomstart] GREENFOR started at = %1",bc_randomMarkerIndependent];};
+    if (!isNil "bc_randomMarkerCivilian") then {diag_log format["[randomstart] CIVFOR started at = %1",bc_randomMarkerCivilian];};
 };

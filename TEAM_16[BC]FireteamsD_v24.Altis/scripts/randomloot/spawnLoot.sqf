@@ -1,4 +1,5 @@
-if(isServer)then{
+if(!isServer) exitWith {};
+
 _pos=	(_this select 0);
 _pos0=	(_pos select 0);
 _pos1=	(_pos select 1);
@@ -16,9 +17,9 @@ deletevehicle _BARREL;
 _rarityHighlyCommon = 30;
 _rarityCommon = 42;
 _rarityUncommon = 11;
-_rarityHighlyUncommon = 10;
-_rarityRare = 6; //4
-_rarityExtremelyRare = 1; //1
+_rarityHighlyUncommon = 11;
+_rarityRare = 4; //4
+_rarityExtremelyRare = 2; //1
 
 _hundredMinusCommon = _rarityHighlyCommon + _rarityCommon;
 _hundredMinusUncommon = _hundredMinusCommon + _rarityUncommon;
@@ -63,7 +64,7 @@ showMarker = {
     _debug setMarkerShape "ICON";
     _debug setMarkerType "hd_dot";
     _debug setMarkerColor "ColorRed";
-    _txt=format ["%1 %2",_marker,_size];
+    _txt=format ["%1",_marker];
     _debug setMarkerText _txt;
 };
     
@@ -129,12 +130,8 @@ spawnItem = {
             [_rarity] call showMarker;
         };
     };
-    
+
 };
-
-
-
-
 
 // Spawn selected type
 switch (_rarity) do {
@@ -144,7 +141,6 @@ switch (_rarity) do {
 		_name = _item select 0;
 		_type = _item select 1;
 		[_name,_type] call spawnItem;
-		[_type] call showMarker;
 	};
 	
 	// Common
@@ -162,7 +158,6 @@ switch (_rarity) do {
 		_name = _item select 0;
 		_type = _item select 1;
 		[_name,_type] call spawnItem;
-		[_type] call showMarker;
 	};
 	
 	// Highly uncommon
@@ -171,7 +166,6 @@ switch (_rarity) do {
 		_name = _item select 0;
 		_type = _item select 1;
 		[_name,_type] call spawnItem;
-		[_type] call showMarker;
 	};
 	
 	// Rare
@@ -180,7 +174,6 @@ switch (_rarity) do {
 		_name = _item select 0;
 		_type = _item select 1;
 		[_name,_type] call spawnItem;
-		[_type] call showMarker;
 	};
 	
 	// Extremely rare
@@ -189,9 +182,6 @@ switch (_rarity) do {
 		_name = _item select 0;
 		_type = _item select 1;
 		[_name,_type] call spawnItem;
-		[_type] call showMarker;
 	};
 	default {hint "Let Fritz know something went wrong!"};
 };
-
-};//IsServer 

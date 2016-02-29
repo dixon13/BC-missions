@@ -75,6 +75,47 @@ if (_randomizeIndependent && (count _markerArrayIndependent > 0)) then {
     publicVariable "bc_randomMarkerIndependent";
     _randomTeamArray pushBack [_placeMarkerIndependent, bc_randomMarkerIndependent, _objectArrayIndependent, "INDEPENDENT"];
 };
+// CIV
+if (_randomizeCivilian && (count _markerArrayCivilian > 0)) then {
+    bc_randomMarkerCivilian = selectRandom _markerArrayCivilian;
+    _overlapWest = true;
+    _overlapEast = true;
+    _overlapIndep = true;
+    while {_overlapWest || _overlapEast || _overlapIndep} do {
+        if (!isNil "bc_randomMarkerWest") then {
+            if (bc_randomMarkerWest == bc_randomMarkerCivilian) then {
+                bc_randomMarkerCivilian = selectRandom _markerArrayCivilian;  
+                _overlapWest = true;
+            } else {
+                _overlapWest = false;
+            };
+        } else {
+            _overlapWest = false;
+        };
+        if (!isNil "bc_randomMarkerEast") then {
+            if (bc_randomMarkerEast == bc_randomMarkerCivilian) then {
+                bc_randomMarkerCivilian = selectRandom _markerArrayCivilian;  
+                _overlapEast = true;
+            } else {
+                _overlapEast = false;
+            };
+        } else {
+            _overlapEast = false;
+        };
+        if (!isNil "bc_randomMarkerIndependent") then {
+            if (bc_randomMarkerIndependent == bc_randomMarkerCivilian) then {
+                bc_randomMarkerCivilian = selectRandom _markerArrayCivilian;  
+                _overlapIndep = true;
+            } else {
+                _overlapIndep = false;
+            };
+        } else {
+            _overlapIndep = false;
+        };
+    };
+    publicVariable "bc_randomMarkerCivilian";
+    _randomTeamArray pushBack [_placeMarkerCivilian, bc_randomMarkerCivilian, _objectArrayCivilian, "CIV"];
+};
 
 { //forEach _randomTeamArray
 
@@ -101,7 +142,7 @@ if (_randomizeIndependent && (count _markerArrayIndependent > 0)) then {
                 _newPos = _startMarkPos getPos [_dis, _dir];
                 
                 //Move object
-                _x setPos [(_newPos select 0), (_newPos select 1)];
+                _x setPosATL [(_newPos select 0), (_newPos select 1),0];
                 _x setDir ((markerDir _randomMark) + (getDir _x));
             };
         } forEach _objectArray;

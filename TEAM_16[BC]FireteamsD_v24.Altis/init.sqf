@@ -17,6 +17,7 @@ if (!didJIP) then {
 
 //Call Fireteam Gamemode
 [] execVM "scripts\fireteam.sqf";
+[] execVM "scripts\randomstart\client.sqf";
 
 // ==================================================
 // ==================================================

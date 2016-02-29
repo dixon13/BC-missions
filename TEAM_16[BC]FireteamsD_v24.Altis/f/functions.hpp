@@ -17,7 +17,8 @@ class radios {
 };
 class loadout {
     file = "f\loadout";
-    class loadout_set{postInit = 1;};
+    //Disable loadouts for now (set in game instead)
+    //class loadout_set{postInit = 1;};
     class loadout_notes{};
 };
 class gpsmarkers {

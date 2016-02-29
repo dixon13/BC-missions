@@ -33,19 +33,26 @@
 // WEST (BLUFOR)
 _randomizeWest = true; // true OR false - use randomstart script with this team
 _placeMarkerWest = "placemarkBlue"; // Name of the marker to be used as the 'placemark' for BLUFOR
-_markerArrayWest = ["random_0","random_1","random_2","random_3","random_4","random_5","random_6","random_7","random_8"];
-_objectArrayWest = []; // If empty make equal to [].
+_markerArrayWest = ["random_0","random_1","random_2","random_3","random_4","random_5","random_6","random_7"];
+_objectArrayWest = [blueTruck]; // If empty make equal to [].
 
 
 // EAST (REDFOR)
 _randomizeEast = true; // true OR false - use randomstart script with this team
 _placeMarkerEast = "placemarkRed"; // Name of the marker to be used as the 'placemark' for REDFOR
-_markerArrayEast = ["random_0","random_1","random_2","random_3","random_4","random_5","random_6","random_7","random_8"];
-_objectArrayEast = []; // If empty make equal to []
+_markerArrayEast = ["random_0","random_1","random_2","random_3","random_4","random_5","random_6","random_7"];
+_objectArrayEast = [redTruck]; // If empty make equal to []
 
 
 // INDEPENDENT (GREENFOR)
 _randomizeIndependent = true; // true OR false - use randomstart script with this team
 _placeMarkerIndependent = "placemarkGreen"; // Name of the marker to be used as the 'placemark' for GREENFOR
-_markerArrayIndependent = ["random_0","random_1","random_2","random_3","random_4","random_5","random_6","random_7","random_8"];
-_objectArrayIndependent = []; // If empty make equal to [].
+_markerArrayIndependent = ["random_0","random_1","random_2","random_3","random_4","random_5","random_6","random_7"];
+_objectArrayIndependent = [greenTruck]; // If empty make equal to [].
+
+
+// CIVILIAN (PURPFOR)
+_randomizeCivilian = true; // true OR false - use randomstart script with this team
+_placeMarkerCivilian = "placemarkPurple"; // Name of the marker to be used as the 'placemark' for GREENFOR
+_markerArrayCivilian = ["random_0","random_1","random_2","random_3","random_4","random_5","random_6","random_7"];
+_objectArrayCivilian = [purpleTruck]; // If empty make equal to [].
