@@ -142,7 +142,7 @@ if (_randomizeCivilian && (count _markerArrayCivilian > 0)) then {
                 _newPos = _startMarkPos getPos [_dis, _dir];
                 
                 //Move object
-                _x setPosATL [(_newPos select 0), (_newPos select 1),0];
+                _x setPosATL [(_newPos select 0), (_newPos select 1),0.5];
                 _x setDir ((markerDir _randomMark) + (getDir _x));
             };
         } forEach _objectArray;

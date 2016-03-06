@@ -10,8 +10,6 @@ _maxItemSpawns = 100; // default 8
 _showLootType=false;
 _showLootRarity=false;
 
-// 37%
-// Backpacks, vests, utilities
 itemsHighlyCommon = [["Binocular", "item"],
 					 ["FirstAidKit", "item"],
 					 ["B_AssaultPack_blk", "backpack"],
@@ -44,8 +42,6 @@ itemsHighlyCommon = [["Binocular", "item"],
     [20, ["name", "type"]]
 ];*/
 
-// 30%
-// Ammunition, smokes, grenades
 itemsCommon = [
 			   ["rhs_mag_30Rnd_556x45_Mk318_Stanag", "mag"],
 			   ["rhs_30Rnd_762x39mm", "mag"]
@@ -74,8 +70,6 @@ itemsCommon = [
 			   ["muzzle_snds_acp", "item"]
 */
 
-// 19%
-// Special utilities, attachments
 itemsUncommon = [
 				 ["Rangefinder", "item"],
 				 ["ToolKit", "item"],
@@ -90,8 +84,6 @@ itemsUncommon = [
 			     ["MiniGrenade", "item"]
 				];
 
-// 9%
-// rare weapons (high powered), utilities (NVG, rangefinder), rare attachments (long range scopes, silencers), explosives
 itemsHighlyUncommon = [["rhs_weap_ak103", "weapon"],
 				       ["rhs_weap_akm", "weapon"],
                        ["rhs_weap_akms", "weapon"],
@@ -100,19 +92,21 @@ itemsHighlyUncommon = [["rhs_weap_ak103", "weapon"],
 				       ["rhs_weap_m4_carryhandle", "weapon"]
 					  ];
 
-// 4%
-// RPGs
 itemsRare = [["NVGoggles", "item"],
-             ["rhs_10Rnd_762x54mmR_7N1", "mag"]
+             ["rhs_10Rnd_762x54mmR_7N1", "mag"],
+             ["rhsusf_100Rnd_556x45_M200_soft_pouch", "mag"],
+             ["rhs_100Rnd_762x54mmR", "mag"]
             ];
 //["DemoCharge_F", "item"],
 //["SatchelCharge_F", "item"],
 
-// 1%
 itemsExtremelyRare = [["rhs_weap_M136_hedp", "weapon"],
 					  ["rhs_weap_svd", "weapon"],
-                      ["rhs_weap_svdp_wd", "weapon"]
+                      ["rhs_weap_m249_pip_S", "weapon"],
+                      ["rhs_weap_pkp", "weapon"]
                      ];
+//["rhs_weap_svdp_wd", "weapon"],
+
 
 // Exclude buildings from loot spawn. Use 'TYPEOF' to find building name
 _exclusionList=[];//	["Land_Pier_F","Land_Pier_small_F","Land_NavigLight","Land_LampHarbour_F"];

@@ -15,11 +15,11 @@ _holder = createVehicle ["groundweaponholder",[_pos0,_pos1,(getposATL _BARREL se
 deletevehicle _BARREL;
 
 _rarityHighlyCommon = 30;
-_rarityCommon = 42;
+_rarityCommon = 38;
 _rarityUncommon = 11;
 _rarityHighlyUncommon = 11;
-_rarityRare = 4; //4
-_rarityExtremelyRare = 2; //1
+_rarityRare = 7; //4
+_rarityExtremelyRare = 3; //1
 
 _hundredMinusCommon = _rarityHighlyCommon + _rarityCommon;
 _hundredMinusUncommon = _hundredMinusCommon + _rarityUncommon;

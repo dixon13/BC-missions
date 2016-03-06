@@ -8,18 +8,18 @@ class EditorData
 	toggles=1;
 	class ItemIDProvider
 	{
-		nextID=506;
+		nextID=551;
 	};
 	class MarkerIDProvider
 	{
-		nextID=54;
+		nextID=60;
 	};
 	class Camera
 	{
-		pos[]={12939.539,162.27159,14740.633};
-		dir[]={-0.38947591,-0.53876138,0.74720752};
-		up[]={-0.24904944,0.84251601,0.47779962};
-		aside[]={0.88677323,1.9434374e-006,0.46221438};
+		pos[]={12209.526,197.90892,14477.503};
+		dir[]={0.49059609,-0.56655258,-0.66226345};
+		up[]={0.33730176,0.82398343,-0.45533472};
+		aside[]={-0.80359709,2.2514723e-006,-0.59530187};
 	};
 };
 binarizationWanted=0;
@@ -34,7 +34,8 @@ addons[]=
 	"A3_Characters_F_BLUFOR",
 	"A3_Data_F_Exp_A_Virtual",
 	"rhs_c_a2port_car",
-	"A3_Soft_F_Truck"
+	"A3_Soft_F_Truck",
+	"A3_Modules_F_Multiplayer"
 };
 randomSeed=1262164;
 class ScenarioData
@@ -118,10 +119,10 @@ class Mission
 {
 	class Intel
 	{
-		briefingName="TEAM_16[BC]FireteamsD_v24";
+		briefingName="TEAM_40[BC]Fireteams_v24";
 		resistanceEast=1;
 		timeOfChanges=10800;
-		startWeather=0.50333971;
+		startWeather=0.25287199;
 		startWind=0;
 		startWaves=0.099999994;
 		forecastWeather=0;
@@ -133,14 +134,14 @@ class Mission
 		year=2009;
 		month=8;
 		day=9;
-		hour=17;
-		minute=0;
+		hour=15;
+		minute=27;
 		startFogDecay=0.013;
 		forecastFogDecay=0.013;
 	};
 	class Entities
 	{
-		items=45;
+		items=54;
 		class Item0
 		{
 			dataType="Logic";
@@ -404,7 +405,7 @@ class Mission
 			side="East";
 			class Entities
 			{
-				items=4;
+				items=5;
 				class Item0
 				{
 					dataType="Object";
@@ -489,7 +490,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={12013.505,15.205261,14529.707};
-						angles[]={0,0.76564103,0};
+						angles[]={0,0.79794651,0};
 					};
 					side="East";
 					flags=1;
@@ -567,6 +568,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={12011.911,15.129936,14528.225};
+						angles[]={0,0.78903276,0};
 					};
 					side="East";
 					flags=1;
@@ -644,6 +646,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={12010.507,15.089925,14527.228};
+						angles[]={0,0.83606875,0};
 					};
 					side="East";
 					flags=1;
@@ -715,6 +718,84 @@ class Mission
 						nAttributes=1;
 					};
 				};
+				class Item4
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={12008.897,15.030599,14525.573};
+						angles[]={0,0.81173009,0};
+					};
+					side="East";
+					flags=1;
+					class Attributes
+					{
+						description="Rifleman";
+						isPlayable=1;
+						class Inventory
+						{
+							class handgun
+							{
+								name="rhs_weap_makarov_pmm";
+								class primaryMuzzleMag
+								{
+									name="rhs_mag_9x18_12_57N181S";
+									ammoLeft=12;
+								};
+							};
+							class uniform
+							{
+								typeName="MNP_CombatUniform_PPU_A";
+								isBackpack=0;
+								class MagazineCargo
+								{
+									items=2;
+									class Item0
+									{
+										name="Chemlight_red";
+										count=1;
+										ammoLeft=1;
+									};
+									class Item1
+									{
+										name="rhs_mag_9x18_12_57N181S";
+										count=2;
+										ammoLeft=12;
+									};
+								};
+							};
+							map="ItemMap";
+							compass="ItemCompass";
+							radio="ItemRadio";
+							headgear="MNP_Helmet_ROK";
+						};
+					};
+					id=537;
+					type="O_Soldier_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="enableStamina";
+							expression="_this enablestamina _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
 			};
 			class Attributes
 			{
@@ -727,7 +808,7 @@ class Mission
 			side="Civilian";
 			class Entities
 			{
-				items=4;
+				items=5;
 				class Item0
 				{
 					dataType="Object";
@@ -741,6 +822,7 @@ class Mission
 					{
 						name="civ1";
 						description="Team Leader";
+						isPlayer=1;
 						isPlayable=1;
 						class Inventory
 						{
@@ -1016,6 +1098,79 @@ class Mission
 						nAttributes=1;
 					};
 				};
+				class Item4
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={12525.158,55.854012,14983.81};
+						angles[]={0,6.1583071,0};
+					};
+					side="Civilian";
+					flags=1;
+					class Attributes
+					{
+						name="civ5";
+						description="Rifleman";
+						isPlayable=1;
+						class Inventory
+						{
+							class handgun
+							{
+								name="rhs_weap_makarov_pmm";
+								class primaryMuzzleMag
+								{
+									name="rhs_mag_9x18_12_57N181S";
+									ammoLeft=12;
+								};
+							};
+							class uniform
+							{
+								typeName="rhs_uniform_mflora_patchless";
+								isBackpack=0;
+								class MagazineCargo
+								{
+									items=1;
+									class Item0
+									{
+										name="rhs_mag_9x18_12_57N181S";
+										count=2;
+										ammoLeft=12;
+									};
+								};
+							};
+							map="ItemMap";
+							compass="ItemCompass";
+							radio="ItemRadio";
+							headgear="MNP_Helmet_PAGST_UKR";
+						};
+					};
+					id=529;
+					type="C_man_shorts_2_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="enableStamina";
+							expression="_this enablestamina _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
 			};
 			class Attributes
 			{
@@ -1028,7 +1183,7 @@ class Mission
 			side="Independent";
 			class Entities
 			{
-				items=4;
+				items=5;
 				class Item0
 				{
 					dataType="Object";
@@ -1042,7 +1197,6 @@ class Mission
 					class Attributes
 					{
 						description="Team Leader";
-						isPlayer=1;
 						isPlayable=1;
 						class Inventory
 						{
@@ -1293,6 +1447,78 @@ class Mission
 						};
 					};
 					id=405;
+					type="I_soldier_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="enableStamina";
+							expression="_this enablestamina _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
+				class Item4
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={13285.278,2.2714388,14516.362};
+						angles[]={0,5.4902997,0};
+					};
+					side="Independent";
+					flags=1;
+					class Attributes
+					{
+						description="Rifleman";
+						isPlayable=1;
+						class Inventory
+						{
+							class handgun
+							{
+								name="rhsusf_weap_m1911a1";
+								class primaryMuzzleMag
+								{
+									name="rhsusf_mag_7x45acp_MHP";
+									ammoLeft=7;
+								};
+							};
+							class uniform
+							{
+								typeName="U_BG_Guerilla2_1";
+								isBackpack=0;
+								class MagazineCargo
+								{
+									items=1;
+									class Item0
+									{
+										name="rhsusf_mag_7x45acp_MHP";
+										count=2;
+										ammoLeft=7;
+									};
+								};
+							};
+							map="ItemMap";
+							compass="ItemCompass";
+							radio="ItemRadio";
+							headgear="MNP_Helmet_BLK";
+						};
+					};
+					id=507;
 					type="I_soldier_F";
 					class CustomAttributes
 					{
@@ -1659,7 +1885,7 @@ class Mission
 			side="West";
 			class Entities
 			{
-				items=4;
+				items=5;
 				class Item0
 				{
 					dataType="Object";
@@ -1810,7 +2036,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={12630.003,17.466003,15684.63};
-						angles[]={0,3.5511866,0};
+						angles[]={0,3.0827506,0};
 					};
 					side="West";
 					flags=1;
@@ -1882,7 +2108,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={12629.995,17.348608,15686.946};
-						angles[]={0,3.5313246,0};
+						angles[]={0,3.0636346,0};
 					};
 					side="West";
 					flags=1;
@@ -1923,6 +2149,78 @@ class Mission
 						};
 					};
 					id=414;
+					type="B_Soldier_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="enableStamina";
+							expression="_this enablestamina _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
+				class Item4
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={12630.033,17.227234,15689.335};
+						angles[]={0,3.0604429,0};
+					};
+					side="West";
+					flags=1;
+					class Attributes
+					{
+						description="Rifleman";
+						isPlayable=1;
+						class Inventory
+						{
+							class handgun
+							{
+								name="rhsusf_weap_m1911a1";
+								class primaryMuzzleMag
+								{
+									name="rhsusf_mag_7x45acp_MHP";
+									ammoLeft=7;
+								};
+							};
+							class uniform
+							{
+								typeName="MNP_CombatUniform_USMC_T";
+								isBackpack=0;
+								class MagazineCargo
+								{
+									items=1;
+									class Item0
+									{
+										name="rhsusf_mag_7x45acp_MHP";
+										count=2;
+										ammoLeft=7;
+									};
+								};
+							};
+							map="ItemMap";
+							compass="ItemCompass";
+							radio="ItemRadio";
+							headgear="MNP_Helmet_USMC";
+						};
+					};
+					id=515;
 					type="B_Soldier_F";
 					class CustomAttributes
 					{
@@ -2421,8 +2719,8 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={12522.723,55.702217,14989.121};
-				angles[]={6.2205977,0,0.20380209};
+				position[]={12521.274,55.371956,14988.707};
+				angles[]={6.2206011,0,0.20379798};
 			};
 			side="Empty";
 			class Attributes
@@ -2481,8 +2779,8 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={12010.899,15.368814,14531.4};
-				angles[]={6.2219238,0.86474085,6.2711778};
+				position[]={12009.585,15.488104,14532.794};
+				angles[]={6.2166171,0.86474085,6.2765174};
 			};
 			side="Empty";
 			class Attributes
@@ -2541,8 +2839,8 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={13276.975,4.1422086,14519.167};
-				angles[]={0,5.399333,0};
+				position[]={13275.604,4.140286,14517.975};
+				angles[]={6.2818484,5.399333,0.0013372133};
 			};
 			side="Empty";
 			class Attributes
@@ -2610,8 +2908,8 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={12632.518,19.406099,15682.666};
-				angles[]={0.050614551,3.0959001,6.2711778};
+				position[]={12634.107,19.364008,15683.119};
+				angles[]={0.050623242,3.0959001,6.2711854};
 			};
 			side="Empty";
 			class Attributes
@@ -2674,7 +2972,8 @@ class Mission
 			{
 				name="objPurpleSeize";
 				condition="triggerActivated objPurple && (!triggerActivated objBlue) && (!triggerActivated objRed) && (!triggerActivated objGreen)";
-				onActivation="titleText [""CIVILIAN captured the objective."",""PLAIN DOWN"", 1.5]; ""objHold"" setMarkerColor ""ColorCivilian"";";
+				onActivation="titleText [""CIVILIAN captured the objective."",""PLAIN DOWN"", 1.5]; ""objHold"" setMarkerColor ""ColorCivilian""; [""purpleSeize""] exec ""scripts\objseized.sqf"";";
+				onDeactivation="objSeized = false;";
 				sizeA=100;
 				sizeB=100;
 				timeout[]={120,120,120};
@@ -2693,7 +2992,8 @@ class Mission
 			{
 				name="objRedSeize";
 				condition="this && (!triggerActivated objBlue) && (!triggerActivated objGreen) && (!triggerActivated objPurple)";
-				onActivation="titleText [""OPFOR captured the objective."",""PLAIN DOWN"", 1.5]; ""objHold"" setMarkerColor ""ColorOPFOR"";";
+				onActivation="titleText [""OPFOR captured the objective."",""PLAIN DOWN"", 1.5]; ""objHold"" setMarkerColor ""ColorOPFOR""; [""redSeize""] exec ""scripts\objseized.sqf"";";
+				onDeactivation="objSeized = false;";
 				sizeA=100;
 				sizeB=100;
 				timeout[]={120,120,120};
@@ -2712,7 +3012,8 @@ class Mission
 			{
 				name="objBlueSeize";
 				condition="this && (!triggerActivated objRed) && (!triggerActivated objGreen) && (!triggerActivated objPurple)";
-				onActivation="titleText [""BLUFOR captured the objective."",""PLAIN DOWN"", 1.5]; ""objHold"" setMarkerColor ""ColorBLUFOR"";";
+				onActivation="titleText [""BLUFOR captured the objective."",""PLAIN DOWN"", 1.5]; ""objHold"" setMarkerColor ""ColorBLUFOR""; [""blueSeize""] exec ""scripts\objseized.sqf"";";
+				onDeactivation="objSeized = false;";
 				sizeA=100;
 				sizeB=100;
 				timeout[]={120,120,120};
@@ -2731,7 +3032,8 @@ class Mission
 			{
 				name="objGreenSeize";
 				condition="this && (!triggerActivated objBlue) && (!triggerActivated objRed) && (!triggerActivated objPurple)";
-				onActivation="titleText [""INDEPENDENT captured the objective."",""PLAIN DOWN"", 1.5]; ""objHold"" setMarkerColor ""ColorIndependent"";";
+				onActivation="titleText [""INDEPENDENT captured the objective."",""PLAIN DOWN"", 1.5]; ""objHold"" setMarkerColor ""ColorIndependent""; [""greenSeize""] exec ""scripts\objseized.sqf"";";
+				onDeactivation="objSeized = false;";
 				sizeA=100;
 				sizeB=100;
 				timeout[]={120,120,120};
@@ -2749,12 +3051,14 @@ class Mission
 			class Attributes
 			{
 				name="objPurple";
-				condition="civ1 in thisList || civ2 in thisList || civ3 in thisList || civ4 in thisList";
-				onActivation="if (!(triggerActivated objBlue || triggerActivated objRed || triggerActivated objGreen)) then {titleText [""Objective is being captured. Hold for 2 minutes."",""PLAIN DOWN"", 118];} else {titleText [""Objective is contested."",""PLAIN DOWN"", 2]; ""objHold"" setMarkerColor ""ColorUNKNOWN"";};";
+				condition="(civ1 in thisList) || (civ2 in thisList) || (civ3 in thisList) || (civ4 in thisList) || (civ5 in thisList) || (civ6 in thisList) || (civ7 in thisList) || (civ8 in thisList) || (civ9 in thisList) || (civ10 in thisList)";
+				onActivation="if (!(triggerActivated objBlue || triggerActivated objRed || triggerActivated objGreen)) then {titleText [""Objective is being captured. Hold for 2 minutes."",""PLAIN DOWN"", 2];} else {titleText [""Objective is contested."",""PLAIN DOWN"", 2]; ""objHold"" setMarkerColor ""ColorUNKNOWN"";};";
+				onDeactivation="titleText ["""",""PLAIN DOWN"", 1];";
 				sizeA=100;
 				sizeB=100;
 				interuptable=1;
 				repeatable=1;
+				activationBy="CIV";
 			};
 			id=501;
 			type="EmptyDetector";
@@ -2766,7 +3070,8 @@ class Mission
 			class Attributes
 			{
 				name="objRed";
-				onActivation="if (!(triggerActivated objPurple || triggerActivated objBlue || triggerActivated objGreen)) then {titleText [""Objective is being captured. Hold for 2 minutes."",""PLAIN DOWN"", 118];} else {titleText [""Objective is contested."",""PLAIN DOWN"", 2]; ""objHold"" setMarkerColor ""ColorUNKNOWN"";};";
+				onActivation="if (!(triggerActivated objPurple || triggerActivated objBlue || triggerActivated objGreen)) then {titleText [""Objective is being captured. Hold for 2 minutes."",""PLAIN DOWN"", 2];} else {titleText [""Objective is contested."",""PLAIN DOWN"", 2]; ""objHold"" setMarkerColor ""ColorUNKNOWN"";};";
+				onDeactivation="titleText ["""",""PLAIN DOWN"", 1];";
 				sizeA=100;
 				sizeB=100;
 				interuptable=1;
@@ -2783,7 +3088,8 @@ class Mission
 			class Attributes
 			{
 				name="objBlue";
-				onActivation="if (!(triggerActivated objPurple || triggerActivated objRed || triggerActivated objGreen)) then {titleText [""Objective is being captured. Hold for 2 minutes."",""PLAIN DOWN"", 118];} else {titleText [""Objective is contested."",""PLAIN DOWN"", 2]; ""objHold"" setMarkerColor ""ColorUNKNOWN"";};";
+				onActivation="if (!(triggerActivated objPurple || triggerActivated objRed || triggerActivated objGreen)) then {titleText [""Objective is being captured. Hold for 2 minutes."",""PLAIN DOWN"", 2];} else {titleText [""Objective is contested."",""PLAIN DOWN"", 2]; ""objHold"" setMarkerColor ""ColorUNKNOWN"";};";
+				onDeactivation="titleText ["""",""PLAIN DOWN"", 1];";
 				sizeA=100;
 				sizeB=100;
 				interuptable=1;
@@ -2800,7 +3106,8 @@ class Mission
 			class Attributes
 			{
 				name="objGreen";
-				onActivation="if (!(triggerActivated objPurple || triggerActivated objRed || triggerActivated objBlue)) then {titleText [""Objective is being captured. Hold for 2 minutes."",""PLAIN DOWN"", 118];} else {titleText [""Objective is contested."",""PLAIN DOWN"", 2]; ""objHold"" setMarkerColor ""ColorUNKNOWN"";};";
+				onActivation="if (!(triggerActivated objPurple || triggerActivated objRed || triggerActivated objBlue)) then {titleText [""Objective is being captured. Hold for 2 minutes."",""PLAIN DOWN"", 2];} else {titleText [""Objective is contested."",""PLAIN DOWN"", 2]; ""objHold"" setMarkerColor ""ColorUNKNOWN"";};";
+				onDeactivation="titleText ["""",""PLAIN DOWN"", 1];";
 				sizeA=100;
 				sizeB=100;
 				interuptable=1;
@@ -2812,29 +3119,1688 @@ class Mission
 		};
 		class Item44
 		{
+			dataType="Group";
+			side="Independent";
+			class Entities
+			{
+				items=5;
+				class Item0
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={13278.092,2.2845163,14525.819};
+						angles[]={0,5.4746089,0};
+					};
+					side="Independent";
+					flags=3;
+					class Attributes
+					{
+						description="Team Leader";
+						isPlayable=1;
+						class Inventory
+						{
+							class handgun
+							{
+								name="rhsusf_weap_m1911a1";
+								class primaryMuzzleMag
+								{
+									name="rhsusf_mag_7x45acp_MHP";
+									ammoLeft=7;
+								};
+							};
+							class uniform
+							{
+								typeName="U_BG_Guerilla2_1";
+								isBackpack=0;
+								class MagazineCargo
+								{
+									items=1;
+									class Item0
+									{
+										name="rhsusf_mag_7x45acp_MHP";
+										count=2;
+										ammoLeft=7;
+									};
+								};
+							};
+							map="ItemMap";
+							compass="ItemCompass";
+							radio="ItemRadio";
+							headgear="MNP_Helmet_BLK";
+						};
+					};
+					id=509;
+					type="I_Sniper_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="enableStamina";
+							expression="_this enablestamina _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
+				class Item1
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={13280.812,2.2758176,14523.435};
+						angles[]={0,5.4746089,0};
+					};
+					side="Independent";
+					flags=1;
+					class Attributes
+					{
+						description="Rifleman";
+						isPlayable=1;
+						class Inventory
+						{
+							class handgun
+							{
+								name="rhsusf_weap_m1911a1";
+								class primaryMuzzleMag
+								{
+									name="rhsusf_mag_7x45acp_MHP";
+									ammoLeft=7;
+								};
+							};
+							class uniform
+							{
+								typeName="U_BG_Guerilla2_1";
+								isBackpack=0;
+								class MagazineCargo
+								{
+									items=1;
+									class Item0
+									{
+										name="rhsusf_mag_7x45acp_MHP";
+										count=2;
+										ammoLeft=7;
+									};
+								};
+							};
+							map="ItemMap";
+							compass="ItemCompass";
+							radio="ItemRadio";
+							headgear="MNP_Helmet_BLK";
+						};
+					};
+					id=510;
+					type="I_Spotter_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="enableStamina";
+							expression="_this enablestamina _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
+				class Item2
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={13282.726,2.2717404,14521.857};
+						angles[]={0,5.3690166,0};
+					};
+					side="Independent";
+					flags=1;
+					class Attributes
+					{
+						description="Rifleman";
+						isPlayable=1;
+						class Inventory
+						{
+							class handgun
+							{
+								name="rhsusf_weap_m1911a1";
+								class primaryMuzzleMag
+								{
+									name="rhsusf_mag_7x45acp_MHP";
+									ammoLeft=7;
+								};
+							};
+							class uniform
+							{
+								typeName="U_BG_Guerilla2_1";
+								isBackpack=0;
+								class MagazineCargo
+								{
+									items=1;
+									class Item0
+									{
+										name="rhsusf_mag_7x45acp_MHP";
+										count=2;
+										ammoLeft=7;
+									};
+								};
+							};
+							map="ItemMap";
+							compass="ItemCompass";
+							radio="ItemRadio";
+							headgear="MNP_Helmet_BLK";
+						};
+					};
+					id=511;
+					type="I_soldier_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="enableStamina";
+							expression="_this enablestamina _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
+				class Item3
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={13284.649,2.2743051,14520.234};
+						angles[]={0,5.4902997,0};
+					};
+					side="Independent";
+					flags=1;
+					class Attributes
+					{
+						description="Rifleman";
+						isPlayable=1;
+						class Inventory
+						{
+							class handgun
+							{
+								name="rhsusf_weap_m1911a1";
+								class primaryMuzzleMag
+								{
+									name="rhsusf_mag_7x45acp_MHP";
+									ammoLeft=7;
+								};
+							};
+							class uniform
+							{
+								typeName="U_BG_Guerilla2_1";
+								isBackpack=0;
+								class MagazineCargo
+								{
+									items=1;
+									class Item0
+									{
+										name="rhsusf_mag_7x45acp_MHP";
+										count=2;
+										ammoLeft=7;
+									};
+								};
+							};
+							map="ItemMap";
+							compass="ItemCompass";
+							radio="ItemRadio";
+							headgear="MNP_Helmet_BLK";
+						};
+					};
+					id=512;
+					type="I_soldier_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="enableStamina";
+							expression="_this enablestamina _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
+				class Item4
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={13286.773,2.2751777,14518.58};
+						angles[]={0,5.4902997,0};
+					};
+					side="Independent";
+					flags=1;
+					class Attributes
+					{
+						description="Rifleman";
+						isPlayable=1;
+						class Inventory
+						{
+							class handgun
+							{
+								name="rhsusf_weap_m1911a1";
+								class primaryMuzzleMag
+								{
+									name="rhsusf_mag_7x45acp_MHP";
+									ammoLeft=7;
+								};
+							};
+							class uniform
+							{
+								typeName="U_BG_Guerilla2_1";
+								isBackpack=0;
+								class MagazineCargo
+								{
+									items=1;
+									class Item0
+									{
+										name="rhsusf_mag_7x45acp_MHP";
+										count=2;
+										ammoLeft=7;
+									};
+								};
+							};
+							map="ItemMap";
+							compass="ItemCompass";
+							radio="ItemRadio";
+							headgear="MNP_Helmet_BLK";
+						};
+					};
+					id=513;
+					type="I_soldier_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="enableStamina";
+							expression="_this enablestamina _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
+			};
+			class Attributes
+			{
+			};
+			id=508;
+		};
+		class Item45
+		{
+			dataType="Group";
+			side="West";
+			class Entities
+			{
+				items=5;
+				class Item0
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={12627.519,17.789995,15680.18};
+						angles[]={0,3.1406329,0};
+					};
+					side="West";
+					flags=3;
+					class Attributes
+					{
+						description="Team Leader";
+						isPlayable=1;
+						class Inventory
+						{
+							class handgun
+							{
+								name="rhsusf_weap_m1911a1";
+								class primaryMuzzleMag
+								{
+									name="rhsusf_mag_7x45acp_MHP";
+									ammoLeft=7;
+								};
+							};
+							class uniform
+							{
+								typeName="MNP_CombatUniform_USMC_T";
+								isBackpack=0;
+								class MagazineCargo
+								{
+									items=1;
+									class Item0
+									{
+										name="rhsusf_mag_7x45acp_MHP";
+										count=2;
+										ammoLeft=7;
+									};
+								};
+							};
+							map="ItemMap";
+							compass="ItemCompass";
+							radio="ItemRadio";
+							headgear="MNP_Helmet_USMC";
+						};
+					};
+					id=517;
+					type="B_sniper_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="enableStamina";
+							expression="_this enablestamina _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
+				class Item1
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={12627.535,17.611916,15683.052};
+						angles[]={0,3.1406329,0};
+					};
+					side="West";
+					flags=1;
+					class Attributes
+					{
+						description="Rifleman";
+						isPlayable=1;
+						class Inventory
+						{
+							class handgun
+							{
+								name="rhsusf_weap_m1911a1";
+								class primaryMuzzleMag
+								{
+									name="rhsusf_mag_7x45acp_MHP";
+									ammoLeft=7;
+								};
+							};
+							class uniform
+							{
+								typeName="MNP_CombatUniform_USMC_T";
+								isBackpack=0;
+								class MagazineCargo
+								{
+									items=1;
+									class Item0
+									{
+										name="rhsusf_mag_7x45acp_MHP";
+										count=2;
+										ammoLeft=7;
+									};
+								};
+							};
+							map="ItemMap";
+							compass="ItemCompass";
+							radio="ItemRadio";
+							headgear="MNP_Helmet_USMC";
+						};
+					};
+					id=518;
+					type="B_spotter_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="enableStamina";
+							expression="_this enablestamina _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
+				class Item2
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={12627.521,17.471056,15684.76};
+						angles[]={0,3.0827506,0};
+					};
+					side="West";
+					flags=1;
+					class Attributes
+					{
+						description="Rifleman";
+						isPlayable=1;
+						class Inventory
+						{
+							class handgun
+							{
+								name="rhsusf_weap_m1911a1";
+								class primaryMuzzleMag
+								{
+									name="rhsusf_mag_7x45acp_MHP";
+									ammoLeft=7;
+								};
+							};
+							class uniform
+							{
+								typeName="MNP_CombatUniform_USMC_T";
+								isBackpack=0;
+								class MagazineCargo
+								{
+									items=1;
+									class Item0
+									{
+										name="rhsusf_mag_7x45acp_MHP";
+										count=2;
+										ammoLeft=7;
+									};
+								};
+							};
+							map="ItemMap";
+							compass="ItemCompass";
+							radio="ItemRadio";
+							headgear="MNP_Helmet_USMC";
+						};
+					};
+					id=519;
+					type="B_Soldier_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="enableStamina";
+							expression="_this enablestamina _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
+				class Item3
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={12627.514,17.34873,15687.076};
+						angles[]={0,3.0636346,0};
+					};
+					side="West";
+					flags=1;
+					class Attributes
+					{
+						description="Rifleman";
+						isPlayable=1;
+						class Inventory
+						{
+							class handgun
+							{
+								name="rhsusf_weap_m1911a1";
+								class primaryMuzzleMag
+								{
+									name="rhsusf_mag_7x45acp_MHP";
+									ammoLeft=7;
+								};
+							};
+							class uniform
+							{
+								typeName="MNP_CombatUniform_USMC_T";
+								isBackpack=0;
+								class MagazineCargo
+								{
+									items=1;
+									class Item0
+									{
+										name="rhsusf_mag_7x45acp_MHP";
+										count=2;
+										ammoLeft=7;
+									};
+								};
+							};
+							map="ItemMap";
+							compass="ItemCompass";
+							radio="ItemRadio";
+							headgear="MNP_Helmet_USMC";
+						};
+					};
+					id=520;
+					type="B_Soldier_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="enableStamina";
+							expression="_this enablestamina _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
+				class Item4
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={12627.552,17.241867,15689.465};
+						angles[]={0,3.0604429,0};
+					};
+					side="West";
+					flags=1;
+					class Attributes
+					{
+						description="Rifleman";
+						isPlayable=1;
+						class Inventory
+						{
+							class handgun
+							{
+								name="rhsusf_weap_m1911a1";
+								class primaryMuzzleMag
+								{
+									name="rhsusf_mag_7x45acp_MHP";
+									ammoLeft=7;
+								};
+							};
+							class uniform
+							{
+								typeName="MNP_CombatUniform_USMC_T";
+								isBackpack=0;
+								class MagazineCargo
+								{
+									items=1;
+									class Item0
+									{
+										name="rhsusf_mag_7x45acp_MHP";
+										count=2;
+										ammoLeft=7;
+									};
+								};
+							};
+							map="ItemMap";
+							compass="ItemCompass";
+							radio="ItemRadio";
+							headgear="MNP_Helmet_USMC";
+						};
+					};
+					id=521;
+					type="B_Soldier_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="enableStamina";
+							expression="_this enablestamina _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
+			};
+			class Attributes
+			{
+			};
+			id=516;
+		};
+		class Item46
+		{
+			dataType="Group";
+			side="Civilian";
+			class Entities
+			{
+				items=5;
+				class Item0
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={12526.508,56.874935,14993.361};
+					};
+					side="Civilian";
+					flags=3;
+					class Attributes
+					{
+						name="civ6";
+						description="Team Leader";
+						isPlayable=1;
+						class Inventory
+						{
+							class handgun
+							{
+								name="rhs_weap_makarov_pmm";
+								class primaryMuzzleMag
+								{
+									name="rhs_mag_9x18_12_57N181S";
+									ammoLeft=12;
+								};
+							};
+							class uniform
+							{
+								typeName="rhs_uniform_mflora_patchless";
+								isBackpack=0;
+								class MagazineCargo
+								{
+									items=1;
+									class Item0
+									{
+										name="rhs_mag_9x18_12_57N181S";
+										count=2;
+										ammoLeft=12;
+									};
+								};
+							};
+							map="ItemMap";
+							compass="ItemCompass";
+							radio="ItemRadio";
+							headgear="MNP_Helmet_PAGST_UKR";
+						};
+					};
+					id=531;
+					type="C_Nikos";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="enableStamina";
+							expression="_this enablestamina _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
+				class Item1
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={12526.808,56.703259,14990.171};
+					};
+					side="Civilian";
+					flags=1;
+					class Attributes
+					{
+						name="civ7";
+						description="Rifleman";
+						isPlayable=1;
+						class Inventory
+						{
+							class handgun
+							{
+								name="rhs_weap_makarov_pmm";
+								class primaryMuzzleMag
+								{
+									name="rhs_mag_9x18_12_57N181S";
+									ammoLeft=12;
+								};
+							};
+							class uniform
+							{
+								typeName="rhs_uniform_mflora_patchless";
+								isBackpack=0;
+								class MagazineCargo
+								{
+									items=1;
+									class Item0
+									{
+										name="rhs_mag_9x18_12_57N181S";
+										count=2;
+										ammoLeft=12;
+									};
+								};
+							};
+							map="ItemMap";
+							compass="ItemCompass";
+							radio="ItemRadio";
+							headgear="MNP_Helmet_PAGST_UKR";
+						};
+					};
+					id=532;
+					type="C_Orestes";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="enableStamina";
+							expression="_this enablestamina _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
+				class Item2
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={12527.037,56.616619,14988.037};
+					};
+					side="Civilian";
+					flags=1;
+					class Attributes
+					{
+						name="civ8";
+						description="Rifleman";
+						isPlayable=1;
+						class Inventory
+						{
+							class handgun
+							{
+								name="rhs_weap_makarov_pmm";
+								class primaryMuzzleMag
+								{
+									name="rhs_mag_9x18_12_57N181S";
+									ammoLeft=12;
+								};
+							};
+							class uniform
+							{
+								typeName="rhs_uniform_mflora_patchless";
+								isBackpack=0;
+								class MagazineCargo
+								{
+									items=1;
+									class Item0
+									{
+										name="rhs_mag_9x18_12_57N181S";
+										count=2;
+										ammoLeft=12;
+									};
+								};
+							};
+							map="ItemMap";
+							compass="ItemCompass";
+							radio="ItemRadio";
+							headgear="MNP_Helmet_PAGST_UKR";
+						};
+					};
+					id=533;
+					type="C_man_shorts_2_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="enableStamina";
+							expression="_this enablestamina _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
+				class Item3
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={12527.101,56.509438,14986.046};
+					};
+					side="Civilian";
+					flags=1;
+					class Attributes
+					{
+						name="civ9";
+						description="Rifleman";
+						isPlayable=1;
+						class Inventory
+						{
+							class handgun
+							{
+								name="rhs_weap_makarov_pmm";
+								class primaryMuzzleMag
+								{
+									name="rhs_mag_9x18_12_57N181S";
+									ammoLeft=12;
+								};
+							};
+							class uniform
+							{
+								typeName="rhs_uniform_mflora_patchless";
+								isBackpack=0;
+								class MagazineCargo
+								{
+									items=1;
+									class Item0
+									{
+										name="rhs_mag_9x18_12_57N181S";
+										count=2;
+										ammoLeft=12;
+									};
+								};
+							};
+							map="ItemMap";
+							compass="ItemCompass";
+							radio="ItemRadio";
+							headgear="MNP_Helmet_PAGST_UKR";
+						};
+					};
+					id=534;
+					type="C_man_shorts_2_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="enableStamina";
+							expression="_this enablestamina _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
+				class Item4
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={12527.449,56.463276,14983.669};
+						angles[]={0,6.1583071,0};
+					};
+					side="Civilian";
+					flags=1;
+					class Attributes
+					{
+						name="civ10";
+						description="Rifleman";
+						isPlayable=1;
+						class Inventory
+						{
+							class handgun
+							{
+								name="rhs_weap_makarov_pmm";
+								class primaryMuzzleMag
+								{
+									name="rhs_mag_9x18_12_57N181S";
+									ammoLeft=12;
+								};
+							};
+							class uniform
+							{
+								typeName="rhs_uniform_mflora_patchless";
+								isBackpack=0;
+								class MagazineCargo
+								{
+									items=1;
+									class Item0
+									{
+										name="rhs_mag_9x18_12_57N181S";
+										count=2;
+										ammoLeft=12;
+									};
+								};
+							};
+							map="ItemMap";
+							compass="ItemCompass";
+							radio="ItemRadio";
+							headgear="MNP_Helmet_PAGST_UKR";
+						};
+					};
+					id=535;
+					type="C_man_shorts_2_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="enableStamina";
+							expression="_this enablestamina _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
+			};
+			class Attributes
+			{
+			};
+			id=530;
+		};
+		class Item47
+		{
+			dataType="Group";
+			side="East";
+			class Entities
+			{
+				items=5;
+				class Item0
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={12017.135,15.240639,14530.724};
+						angles[]={0,0.76564103,0};
+					};
+					side="East";
+					flags=3;
+					class Attributes
+					{
+						description="Team Leader";
+						isPlayable=1;
+						class Inventory
+						{
+							class handgun
+							{
+								name="rhs_weap_makarov_pmm";
+								class primaryMuzzleMag
+								{
+									name="rhs_mag_9x18_12_57N181S";
+									ammoLeft=12;
+								};
+							};
+							class uniform
+							{
+								typeName="MNP_CombatUniform_PPU_A";
+								isBackpack=0;
+								class MagazineCargo
+								{
+									items=2;
+									class Item0
+									{
+										name="Chemlight_red";
+										count=1;
+										ammoLeft=1;
+									};
+									class Item1
+									{
+										name="rhs_mag_9x18_12_57N181S";
+										count=2;
+										ammoLeft=12;
+									};
+								};
+							};
+							map="ItemMap";
+							compass="ItemCompass";
+							radio="ItemRadio";
+							headgear="MNP_Helmet_ROK";
+						};
+					};
+					id=539;
+					type="O_sniper_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="enableStamina";
+							expression="_this enablestamina _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
+				class Item1
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={12014.64,15.110525,14528.381};
+						angles[]={0,0.79794651,0};
+					};
+					side="East";
+					flags=1;
+					class Attributes
+					{
+						description="Rifleman";
+						isPlayable=1;
+						class Inventory
+						{
+							class handgun
+							{
+								name="rhs_weap_makarov_pmm";
+								class primaryMuzzleMag
+								{
+									name="rhs_mag_9x18_12_57N181S";
+									ammoLeft=12;
+								};
+							};
+							class uniform
+							{
+								typeName="MNP_CombatUniform_PPU_A";
+								isBackpack=0;
+								class MagazineCargo
+								{
+									items=2;
+									class Item0
+									{
+										name="Chemlight_red";
+										count=1;
+										ammoLeft=1;
+									};
+									class Item1
+									{
+										name="rhs_mag_9x18_12_57N181S";
+										count=2;
+										ammoLeft=12;
+									};
+								};
+							};
+							map="ItemMap";
+							compass="ItemCompass";
+							radio="ItemRadio";
+							headgear="MNP_Helmet_ROK";
+						};
+					};
+					id=540;
+					type="O_spotter_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="enableStamina";
+							expression="_this enablestamina _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
+				class Item2
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={12013.046,15.043639,14526.898};
+						angles[]={0,0.78903276,0};
+					};
+					side="East";
+					flags=1;
+					class Attributes
+					{
+						description="Rifleman";
+						isPlayable=1;
+						class Inventory
+						{
+							class handgun
+							{
+								name="rhs_weap_makarov_pmm";
+								class primaryMuzzleMag
+								{
+									name="rhs_mag_9x18_12_57N181S";
+									ammoLeft=12;
+								};
+							};
+							class uniform
+							{
+								typeName="MNP_CombatUniform_PPU_A";
+								isBackpack=0;
+								class MagazineCargo
+								{
+									items=2;
+									class Item0
+									{
+										name="Chemlight_red";
+										count=1;
+										ammoLeft=1;
+									};
+									class Item1
+									{
+										name="rhs_mag_9x18_12_57N181S";
+										count=2;
+										ammoLeft=12;
+									};
+								};
+							};
+							map="ItemMap";
+							compass="ItemCompass";
+							radio="ItemRadio";
+							headgear="MNP_Helmet_ROK";
+						};
+					};
+					id=541;
+					type="O_Soldier_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="enableStamina";
+							expression="_this enablestamina _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
+				class Item3
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={12011.642,15.012635,14525.901};
+						angles[]={0,0.83606875,0};
+					};
+					side="East";
+					flags=1;
+					class Attributes
+					{
+						description="Rifleman";
+						isPlayable=1;
+						class Inventory
+						{
+							class handgun
+							{
+								name="rhs_weap_makarov_pmm";
+								class primaryMuzzleMag
+								{
+									name="rhs_mag_9x18_12_57N181S";
+									ammoLeft=12;
+								};
+							};
+							class uniform
+							{
+								typeName="MNP_CombatUniform_PPU_A";
+								isBackpack=0;
+								class MagazineCargo
+								{
+									items=2;
+									class Item0
+									{
+										name="Chemlight_red";
+										count=1;
+										ammoLeft=1;
+									};
+									class Item1
+									{
+										name="rhs_mag_9x18_12_57N181S";
+										count=2;
+										ammoLeft=12;
+									};
+								};
+							};
+							map="ItemMap";
+							compass="ItemCompass";
+							radio="ItemRadio";
+							headgear="MNP_Helmet_ROK";
+						};
+					};
+					id=542;
+					type="O_Soldier_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="enableStamina";
+							expression="_this enablestamina _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
+				class Item4
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={12010.032,14.953554,14524.247};
+						angles[]={0,0.81173009,0};
+					};
+					side="East";
+					flags=1;
+					class Attributes
+					{
+						description="Rifleman";
+						isPlayable=1;
+						class Inventory
+						{
+							class handgun
+							{
+								name="rhs_weap_makarov_pmm";
+								class primaryMuzzleMag
+								{
+									name="rhs_mag_9x18_12_57N181S";
+									ammoLeft=12;
+								};
+							};
+							class uniform
+							{
+								typeName="MNP_CombatUniform_PPU_A";
+								isBackpack=0;
+								class MagazineCargo
+								{
+									items=2;
+									class Item0
+									{
+										name="Chemlight_red";
+										count=1;
+										ammoLeft=1;
+									};
+									class Item1
+									{
+										name="rhs_mag_9x18_12_57N181S";
+										count=2;
+										ammoLeft=12;
+									};
+								};
+							};
+							map="ItemMap";
+							compass="ItemCompass";
+							radio="ItemRadio";
+							headgear="MNP_Helmet_ROK";
+						};
+					};
+					id=543;
+					type="O_Soldier_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="enableStamina";
+							expression="_this enablestamina _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
+			};
+			class Attributes
+			{
+			};
+			id=538;
+		};
+		class Item48
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={12627.696,17.830503,15675.855};
+				angles[]={0.012000273,0,0.0039967569};
+			};
+			name="respawnBlue";
+			id=544;
+			type="ModuleRespawnPosition_F";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="ModuleRespawnPosition_F_Marker";
+					expression="_this setVariable ['Marker',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="2";
+						};
+					};
+				};
+				class Attribute1
+				{
+					property="ModuleRespawnPosition_F_Name";
+					expression="_this setVariable ['Name',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="";
+						};
+					};
+				};
+				class Attribute2
+				{
+					property="ModuleRespawnPosition_F_Side";
+					expression="_this setVariable ['Side',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="1";
+						};
+					};
+				};
+				class Attribute3
+				{
+					property="ModuleRespawnPosition_F_Type";
+					expression="_this setVariable ['Type',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="0";
+						};
+					};
+				};
+				nAttributes=4;
+			};
+		};
+		class Item49
+		{
 			dataType="Marker";
-			position[]={13811.223,12.570284,15448.404};
+			position[]={13731.559,15.90578,15562.471};
 			name="objHold";
 			markerType="ELLIPSE";
 			type="ellipse";
-			colorName="ColorUNKNOWN";
-			alpha=0.50333971;
-			fillName="SolidBorder";
-			a=100;
-			b=100;
-			drawBorder=1;
-			id=505;
+			a=25;
+			b=25;
+			id=545;
+		};
+		class Item50
+		{
+			dataType="Marker";
+			position[]={13505.7,19.147095,15422.047};
+			name="purpleSeize";
+			markerType="ELLIPSE";
+			type="ellipse";
+			colorName="ColorCIV";
+			a=25;
+			b=25;
+			id=547;
+		};
+		class Item51
+		{
+			dataType="Marker";
+			position[]={13708.514,12.221114,15424.428};
+			name="redSeize";
+			markerType="ELLIPSE";
+			type="ellipse";
+			colorName="ColorEAST";
+			a=25;
+			b=25;
+			id=548;
+		};
+		class Item52
+		{
+			dataType="Marker";
+			position[]={13914.184,8.1998024,15414.906};
+			name="blueSeize";
+			markerType="ELLIPSE";
+			type="ellipse";
+			colorName="ColorWEST";
+			a=25;
+			b=25;
+			id=549;
+		};
+		class Item53
+		{
+			dataType="Marker";
+			position[]={14133.659,2.8506393,15403.956};
+			name="greenSeize";
+			markerType="ELLIPSE";
+			type="ellipse";
+			colorName="ColorGUER";
+			a=25;
+			b=25;
+			id=550;
 		};
 	};
 	class Connections
 	{
 		class LinkIDProvider
 		{
-			nextID=16;
+			nextID=38;
 		};
 		class Links
 		{
-			items=16;
+			items=38;
 			class Item0
 			{
 				linkID=0;
@@ -2989,6 +4955,226 @@ class Mission
 			{
 				linkID=15;
 				item0=402;
+				item1=226;
+				class CustomData
+				{
+					type="Sync";
+				};
+			};
+			class Item16
+			{
+				linkID=16;
+				item0=509;
+				item1=227;
+				class CustomData
+				{
+					type="Sync";
+				};
+			};
+			class Item17
+			{
+				linkID=17;
+				item0=510;
+				item1=227;
+				class CustomData
+				{
+					type="Sync";
+				};
+			};
+			class Item18
+			{
+				linkID=18;
+				item0=511;
+				item1=227;
+				class CustomData
+				{
+					type="Sync";
+				};
+			};
+			class Item19
+			{
+				linkID=19;
+				item0=512;
+				item1=227;
+				class CustomData
+				{
+					type="Sync";
+				};
+			};
+			class Item20
+			{
+				linkID=20;
+				item0=513;
+				item1=227;
+				class CustomData
+				{
+					type="Sync";
+				};
+			};
+			class Item21
+			{
+				linkID=21;
+				item0=517;
+				item1=35;
+				class CustomData
+				{
+					type="Sync";
+				};
+			};
+			class Item22
+			{
+				linkID=22;
+				item0=518;
+				item1=35;
+				class CustomData
+				{
+					type="Sync";
+				};
+			};
+			class Item23
+			{
+				linkID=23;
+				item0=519;
+				item1=35;
+				class CustomData
+				{
+					type="Sync";
+				};
+			};
+			class Item24
+			{
+				linkID=24;
+				item0=520;
+				item1=35;
+				class CustomData
+				{
+					type="Sync";
+				};
+			};
+			class Item25
+			{
+				linkID=25;
+				item0=521;
+				item1=35;
+				class CustomData
+				{
+					type="Sync";
+				};
+			};
+			class Item26
+			{
+				linkID=26;
+				item0=529;
+				item1=228;
+				class CustomData
+				{
+					type="Sync";
+				};
+			};
+			class Item27
+			{
+				linkID=27;
+				item0=531;
+				item1=228;
+				class CustomData
+				{
+					type="Sync";
+				};
+			};
+			class Item28
+			{
+				linkID=28;
+				item0=532;
+				item1=228;
+				class CustomData
+				{
+					type="Sync";
+				};
+			};
+			class Item29
+			{
+				linkID=29;
+				item0=533;
+				item1=228;
+				class CustomData
+				{
+					type="Sync";
+				};
+			};
+			class Item30
+			{
+				linkID=30;
+				item0=534;
+				item1=228;
+				class CustomData
+				{
+					type="Sync";
+				};
+			};
+			class Item31
+			{
+				linkID=31;
+				item0=535;
+				item1=228;
+				class CustomData
+				{
+					type="Sync";
+				};
+			};
+			class Item32
+			{
+				linkID=32;
+				item0=537;
+				item1=226;
+				class CustomData
+				{
+					type="Sync";
+				};
+			};
+			class Item33
+			{
+				linkID=33;
+				item0=539;
+				item1=226;
+				class CustomData
+				{
+					type="Sync";
+				};
+			};
+			class Item34
+			{
+				linkID=34;
+				item0=540;
+				item1=226;
+				class CustomData
+				{
+					type="Sync";
+				};
+			};
+			class Item35
+			{
+				linkID=35;
+				item0=541;
+				item1=226;
+				class CustomData
+				{
+					type="Sync";
+				};
+			};
+			class Item36
+			{
+				linkID=36;
+				item0=542;
+				item1=226;
+				class CustomData
+				{
+					type="Sync";
+				};
+			};
+			class Item37
+			{
+				linkID=37;
+				item0=543;
 				item1=226;
 				class CustomData
 				{

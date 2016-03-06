@@ -13,9 +13,9 @@ enableItemsDropping = 0;
 disabledAI = 1;
 enableDebugConsole = 1;
 
-respawn = 1;
+respawn = 3;
 respawndelay = 3;
-respawnOnStart = 0;
+respawnOnStart = 1;
 respawnTemplates[] = {"Seagull", "f_spectator"};
 
 class cfgNotifications {
