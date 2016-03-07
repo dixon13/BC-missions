@@ -7,26 +7,32 @@
 // * A player will remain dead until the objective is complete.
 // * Dead players will respawn upon a new objective being assigned.
 // * Equipment will spawn in buildings around the current objective AO.
-// * Vehicles will also spawn in the AO. Higher value vehicles spawn with fewer ammo and fuel.
 
 // Configuration:
-// * randomloot\server.sqf - _maxSpawns     // Maxmimum number of items per building
-// * randomloot\server.sqf - _probability   // Probability that the item spawns in a building
+// fireteam.sqf          - sizeOfSpawnAO    // Circle that items spawn in and players spawn around
+// fireteam.sqf          - sizeOfObjHold    // Circle that players must hold for objective type "Hold"
+// fireteam.sqf          - objTickTime      // How many seconds until seizeMarker increases for obj "Hold"
+// fireteam.sqf          - objNumberOfTicks // How many ticks a team must hold obj "Hold" to win
+// fireteam.sqf          - minDistBetweenSpawn // How far to spawn teams apart
+// randomloot\server.sqf - _maxSpawns     // Maxmimum number of items per building
+// randomloot\server.sqf - _probability   // Probability that the item spawns in a building
+// 
 
 #include "randomstart\settings.sqf";
 
 if (!isServer) exitWith {};
 
-sizeOfSpawnAO = 500; // default 500:
-sizeOfObjHold = 25; // default 25:
-objTickTime = 1; // default 1: Each tick the seizeMarker increases in seconds
-objNumberOfTicks = 60*5; // How much to increase the seizeMarker every interval of time
-objSizeTick = (sizeOfSpawnAO - sizeOfObjHold) / objNumberOfTicks;
-minDistBetweenSpawn = 250; // default 250: Be careful with this! It is not robust enough to check that all markers can be placed with this constraint, meaning, you can enter an inf loop trying to make all randomstart markers fit the criteria.
-objNumber = 0;
-currentLoc = nil;
+sizeOfSpawnAO    = 500;  // default 500: Circle that items spawn in and players spawn around
+sizeOfObjHold    = 25;   // default 25: Circle that players must hold for obj type "Hold"
+objTickTime      = 1;    // default 1: How many seconds until seizeMarker increases for obj "Hold"
+objNumberOfTicks = 60*5; // default 60*5: How many ticks (objTickTime) a team must hold obj "Hold" to win
+objSizeTick = (sizeOfSpawnAO - sizeOfObjHold) / objNumberOfTicks; //How much to increase the seizeMarker
+minDistBetweenSpawn = 250; // default 250: Be careful with this! It is not robust enough to check that all markers can be placed with this constraint, meaning, you can cause teams to not have spawn points.
 
-// Array of "Locations": [name, size, pos, angle]
+objNumber  = 0;   // Keeps track of the current number obj
+currentLoc = nil; // Keeps track of the current obj location
+
+// Array of Locations: [name, size, pos, angle]
 objLocations = [
     ["Abdera",          [160,160], [9428.6553,20241.711], 0],
     ["Kore",            [150,150], [7156.0981,16473.186], 0],
@@ -64,6 +70,16 @@ objLocations = [
     ["Neochori",        [150,150], [12584.114,14326.683], 0]
 ];
 
+/* Altis Locations
+
+//Not good enough yet
+    ["Aggelochori",     [300,300], [3822.207,13685.973],  0],
+    ["Agia Triada",     [50,200],  [16617.021,20575.688], 323],
+    ["Topolia",         [75,150],  [7378.4136,15335.224], 0],
+    ["Katalaki",        [150,150], [11761.309,13712.03],  0],
+    ["Kavala",          [300,300], [3599.1462,13059.67],  0]
+*/
+
 /* Chernarus Locations
     ["Chernogorsk",     [200,200], [6711.0625,2650.7988], 0],
     ["Elekrozavodsk",   [200,200], [10322.455,2122.6682], 0],
@@ -71,25 +87,15 @@ objLocations = [
     ["Berezino Docks",  [200,200], [12885.655,9982.2178], 0]
 
 // Not good enough yet
-["Zelenogorsk",     [200,200], [2728.0989,5269.583],  0],
-*/
-
-/* Altis Locations
-
-//Not good enough yet
-["Aggelochori",     [300,300], [3822.207,13685.973],  0],
-["Agia Triada",     [50,200],  [16617.021,20575.688], 323],
-["Topolia",         [75,150],  [7378.4136,15335.224], 0],
-["Katalaki",        [150,150], [11761.309,13712.03],  0],
-["Kavala",          [300,300], [3599.1462,13059.67], 0],
+    ["Zelenogorsk",     [200,200], [2728.0989,5269.583],  0]
 */
 
 /* United Sahrani Locations
-    ["Arcadia", [200, 250], [7622.8159, 6435.5762], 320]
+    ["Arcadia", [200, 250], [7622.8159, 6435.5762], 320],
     ["Eponia", [500, 500], [12585.727, 15133.22], 0]
 */
 
-// Array of "Objective Types": ["name"]
+// Array of Objective Types: [name]
 objTypes = [
     ["Hold"]
 ];
@@ -129,8 +135,8 @@ nextObjectiveType = {
 
 moveTriggersAndMarkers = {
     private ["_nextLoc","_objPos","_nextType","_typeName","_3dObjPos","_objSize","_objHold"];
-    _nextLoc = _this select 0;
-    _objPos = _this select 1;
+    _nextLoc  = _this select 0;
+    _objPos   = _this select 1;
     
     _nextType = _this select 2;
     _typeName = _nextType select 0;
@@ -184,7 +190,7 @@ moveTriggersAndMarkers = {
 randItemSpawn = {
     _nextLoc = _this select 0;
     _locSize = _nextLoc select 1;
-    _locPos = _nextLoc select 2;
+    _locPos  = _nextLoc select 2;
     _itemSpawnMarker = "randItemsMarker";
     
     // Move the randomloot marker
@@ -198,11 +204,11 @@ randItemSpawn = {
 
 moveObjective = {
     private ["_nextLoc","_nextType","_locSize","_locPos","_typeName"];
-    _nextLoc = _this select 0;
+    _nextLoc  = _this select 0;
     _nextType = _this select 1;
-    _locSize = _nextLoc select 1;
-    _locPos = _nextLoc select 2;
-    _locDir = _nextLoc select 3;
+    _locSize  = _nextLoc select 1;
+    _locPos   = _nextLoc select 2;
+    _locDir   = _nextLoc select 3;
     _typeName = _nextType select 0;
     
     _objAreaMarker = "objAreaMarker";
@@ -232,7 +238,7 @@ fadeCinematic = {
 
 checkRandomStartPos = {
     private ["_pos","_placedPos","_check","_checkWater"];
-    _pos = _this select 0;
+    _pos       = _this select 0;
     _placedPos = _this select 1;
     
     _check = false;
@@ -256,7 +262,7 @@ checkRandomStartPos = {
 playerStart = {
     private ["_nextLoc","_locPos","_marker","_randomPos"];
     _nextLoc = _this select 0;
-    _locPos = _nextLoc select 2;
+    _locPos  = _nextLoc select 2;
     
     //Move the random start markers around the perim. of the AO (800m circle around the _nextLoc position)
     _objAreaMarker = "objAreaMarker";
@@ -284,7 +290,6 @@ playerStart = {
     } forEach _markerArrayWest;
     
     // All markers are randomly set...
-    
     // Call player randomstart
     [] execVM "scripts\randomstart\server.sqf";
 };
@@ -298,45 +303,16 @@ respawnPlayers = {
     _objAreaMarker = "objAreaMarker";
     _objAreaMarker setMarkerPos _locPos;
     _objAreaMarker setMarkerSize [sizeOfSpawnAO, sizeOfSpawnAO];
-    //_objAreaMarker setMarkerAlpha 0;
     
-    /*_placedMarkerPos = [];
-    {
-        _marker = _x;
-        _check = false;
-        
-        // Continually try a new randomPos until checkRandomStartPos returns true
-        while { !_check } do {
-            _randomPos = [_objAreaMarker, true] call CBA_fnc_randPosArea;
-            _check = [_randomPos, _placedMarkerPos] call checkRandomStartPos;
-        };
-        
-        // Found a good random pos
-        _marker setMarkerPos _randomPos;
-        
-        // Keep that marker pos for further checks
-        _placedMarkerPos pushBack _randomPos;
-        
-    } forEach _markerArrayWest;
-    */
-    // All markers are randomly set...
 };
-
-// Doing AI implementation last
-//shouldSpawnAI = {false};
-//spawnAI = {};
 
 completedObjective = {
     private ["_nextLoc","_nextType"];
-    // Delete old AI specifically. Not sure if anything else needs to happen yet
-    [] call cleanOldObjective;
-    
-    _nextLoc = [] call nextObjectiveLocation;
-    _nextType = [] call nextObjectiveType;
-    
+    []                    call cleanOldObjective;
+    _nextLoc  = []        call nextObjectiveLocation;
+    _nextType = []        call nextObjectiveType;
     [_nextLoc, _nextType] call moveObjective;
-    
-    [_nextLoc] call respawnPlayers;
+    [_nextLoc]            call respawnPlayers;
     
     // Change time of day
     _skipTime = (random 24);
@@ -355,28 +331,22 @@ completedObjective = {
     };
     50 setOvercast _randOvercast;
     
-    // Only some objective types use AI
-    //if ([] call shouldSpawnAI) then {
-    //    [] call spawnAI;
-    //};
-    
     // Spawn items last because it may take some time...
     [_nextLoc] call randItemSpawn;
 };
 
-// On loading of the map, this func will run
 firstObjective = {
     private ["_nextLoc","_nextType"];
-    _nextLoc = selectRandom objLocations;
+    _nextLoc  = selectRandom objLocations;
     _nextType = selectRandom objTypes;
     
     [_nextLoc, _nextType] call moveObjective;
-    [_nextLoc] call cinematic;
-    [_nextLoc] call playerStart;
+    [_nextLoc]            call cinematic;
+    [_nextLoc]            call playerStart;
     
     // Spawn items last because it may take some time...
-    [_nextLoc] call randItemSpawn;
-    [] call fadeCinematic;
+    [_nextLoc]            call randItemSpawn;
+    []                    call fadeCinematic;
 };
 
 [] call firstObjective;

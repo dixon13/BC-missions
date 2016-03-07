@@ -8,7 +8,7 @@ class EditorData
 	toggles=1;
 	class ItemIDProvider
 	{
-		nextID=551;
+		nextID=571;
 	};
 	class MarkerIDProvider
 	{
@@ -16,10 +16,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={12209.526,197.90892,14477.503};
-		dir[]={0.49059609,-0.56655258,-0.66226345};
-		up[]={0.33730176,0.82398343,-0.45533472};
-		aside[]={-0.80359709,2.2514723e-006,-0.59530187};
+		pos[]={12697.436,45.666992,15129.27};
+		dir[]={-0.0062341942,-0.99206144,0.12602489};
+		up[]={-0.049014464,0.12603848,0.99081683};
+		aside[]={0.99882972,-1.4956895e-006,0.049411397};
 	};
 };
 binarizationWanted=0;
@@ -34,8 +34,7 @@ addons[]=
 	"A3_Characters_F_BLUFOR",
 	"A3_Data_F_Exp_A_Virtual",
 	"rhs_c_a2port_car",
-	"A3_Soft_F_Truck",
-	"A3_Modules_F_Multiplayer"
+	"A3_Soft_F_Truck"
 };
 randomSeed=1262164;
 class ScenarioData
@@ -141,7 +140,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=54;
+		items=53;
 		class Item0
 		{
 			dataType="Logic";
@@ -419,6 +418,7 @@ class Mission
 					class Attributes
 					{
 						description="Team Leader";
+						isPlayer=1;
 						isPlayable=1;
 						class Inventory
 						{
@@ -433,7 +433,7 @@ class Mission
 							};
 							class uniform
 							{
-								typeName="MNP_CombatUniform_PPU_A";
+								typeName="MNP_CombatUniform_China";
 								isBackpack=0;
 								class MagazineCargo
 								{
@@ -455,7 +455,7 @@ class Mission
 							map="ItemMap";
 							compass="ItemCompass";
 							radio="ItemRadio";
-							headgear="MNP_Helmet_ROK";
+							headgear="MNP_Helmet_PAGST_CN";
 						};
 					};
 					id=204;
@@ -511,7 +511,7 @@ class Mission
 							};
 							class uniform
 							{
-								typeName="MNP_CombatUniform_PPU_A";
+								typeName="MNP_CombatUniform_China";
 								isBackpack=0;
 								class MagazineCargo
 								{
@@ -533,7 +533,7 @@ class Mission
 							map="ItemMap";
 							compass="ItemCompass";
 							radio="ItemRadio";
-							headgear="MNP_Helmet_ROK";
+							headgear="MNP_Helmet_PAGST_CN";
 						};
 					};
 					id=205;
@@ -589,7 +589,7 @@ class Mission
 							};
 							class uniform
 							{
-								typeName="MNP_CombatUniform_PPU_A";
+								typeName="MNP_CombatUniform_China";
 								isBackpack=0;
 								class MagazineCargo
 								{
@@ -611,7 +611,7 @@ class Mission
 							map="ItemMap";
 							compass="ItemCompass";
 							radio="ItemRadio";
-							headgear="MNP_Helmet_ROK";
+							headgear="MNP_Helmet_PAGST_CN";
 						};
 					};
 					id=400;
@@ -667,7 +667,7 @@ class Mission
 							};
 							class uniform
 							{
-								typeName="MNP_CombatUniform_PPU_A";
+								typeName="MNP_CombatUniform_China";
 								isBackpack=0;
 								class MagazineCargo
 								{
@@ -689,7 +689,7 @@ class Mission
 							map="ItemMap";
 							compass="ItemCompass";
 							radio="ItemRadio";
-							headgear="MNP_Helmet_ROK";
+							headgear="MNP_Helmet_PAGST_CN";
 						};
 					};
 					id=402;
@@ -745,7 +745,7 @@ class Mission
 							};
 							class uniform
 							{
-								typeName="MNP_CombatUniform_PPU_A";
+								typeName="MNP_CombatUniform_China";
 								isBackpack=0;
 								class MagazineCargo
 								{
@@ -767,7 +767,7 @@ class Mission
 							map="ItemMap";
 							compass="ItemCompass";
 							radio="ItemRadio";
-							headgear="MNP_Helmet_ROK";
+							headgear="MNP_Helmet_PAGST_CN";
 						};
 					};
 					id=537;
@@ -822,7 +822,6 @@ class Mission
 					{
 						name="civ1";
 						description="Team Leader";
-						isPlayer=1;
 						isPlayable=1;
 						class Inventory
 						{
@@ -2976,7 +2975,7 @@ class Mission
 				onDeactivation="objSeized = false;";
 				sizeA=100;
 				sizeB=100;
-				timeout[]={120,120,120};
+				timeout[]={1,1,1};
 				interuptable=1;
 				repeatable=1;
 				activationBy="CIV";
@@ -2996,7 +2995,7 @@ class Mission
 				onDeactivation="objSeized = false;";
 				sizeA=100;
 				sizeB=100;
-				timeout[]={120,120,120};
+				timeout[]={1,1,1};
 				interuptable=1;
 				repeatable=1;
 				activationBy="EAST";
@@ -3016,7 +3015,7 @@ class Mission
 				onDeactivation="objSeized = false;";
 				sizeA=100;
 				sizeB=100;
-				timeout[]={120,120,120};
+				timeout[]={1,1,1};
 				interuptable=1;
 				repeatable=1;
 				activationBy="WEST";
@@ -3036,7 +3035,7 @@ class Mission
 				onDeactivation="objSeized = false;";
 				sizeA=100;
 				sizeB=100;
-				timeout[]={120,120,120};
+				timeout[]={1,1,1};
 				interuptable=1;
 				repeatable=1;
 				activationBy="GUER";
@@ -4271,7 +4270,7 @@ class Mission
 							};
 							class uniform
 							{
-								typeName="MNP_CombatUniform_PPU_A";
+								typeName="MNP_CombatUniform_China";
 								isBackpack=0;
 								class MagazineCargo
 								{
@@ -4293,7 +4292,7 @@ class Mission
 							map="ItemMap";
 							compass="ItemCompass";
 							radio="ItemRadio";
-							headgear="MNP_Helmet_ROK";
+							headgear="MNP_Helmet_PAGST_CN";
 						};
 					};
 					id=539;
@@ -4349,7 +4348,7 @@ class Mission
 							};
 							class uniform
 							{
-								typeName="MNP_CombatUniform_PPU_A";
+								typeName="MNP_CombatUniform_China";
 								isBackpack=0;
 								class MagazineCargo
 								{
@@ -4371,7 +4370,7 @@ class Mission
 							map="ItemMap";
 							compass="ItemCompass";
 							radio="ItemRadio";
-							headgear="MNP_Helmet_ROK";
+							headgear="MNP_Helmet_PAGST_CN";
 						};
 					};
 					id=540;
@@ -4427,7 +4426,7 @@ class Mission
 							};
 							class uniform
 							{
-								typeName="MNP_CombatUniform_PPU_A";
+								typeName="MNP_CombatUniform_China";
 								isBackpack=0;
 								class MagazineCargo
 								{
@@ -4449,7 +4448,7 @@ class Mission
 							map="ItemMap";
 							compass="ItemCompass";
 							radio="ItemRadio";
-							headgear="MNP_Helmet_ROK";
+							headgear="MNP_Helmet_PAGST_CN";
 						};
 					};
 					id=541;
@@ -4505,7 +4504,7 @@ class Mission
 							};
 							class uniform
 							{
-								typeName="MNP_CombatUniform_PPU_A";
+								typeName="MNP_CombatUniform_China";
 								isBackpack=0;
 								class MagazineCargo
 								{
@@ -4527,7 +4526,7 @@ class Mission
 							map="ItemMap";
 							compass="ItemCompass";
 							radio="ItemRadio";
-							headgear="MNP_Helmet_ROK";
+							headgear="MNP_Helmet_PAGST_CN";
 						};
 					};
 					id=542;
@@ -4583,7 +4582,7 @@ class Mission
 							};
 							class uniform
 							{
-								typeName="MNP_CombatUniform_PPU_A";
+								typeName="MNP_CombatUniform_China";
 								isBackpack=0;
 								class MagazineCargo
 								{
@@ -4605,7 +4604,7 @@ class Mission
 							map="ItemMap";
 							compass="ItemCompass";
 							radio="ItemRadio";
-							headgear="MNP_Helmet_ROK";
+							headgear="MNP_Helmet_PAGST_CN";
 						};
 					};
 					id=543;
@@ -4642,98 +4641,6 @@ class Mission
 		};
 		class Item48
 		{
-			dataType="Logic";
-			class PositionInfo
-			{
-				position[]={12627.696,17.830503,15675.855};
-				angles[]={0.012000273,0,0.0039967569};
-			};
-			name="respawnBlue";
-			id=544;
-			type="ModuleRespawnPosition_F";
-			class CustomAttributes
-			{
-				class Attribute0
-				{
-					property="ModuleRespawnPosition_F_Marker";
-					expression="_this setVariable ['Marker',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"STRING"
-								};
-							};
-							value="2";
-						};
-					};
-				};
-				class Attribute1
-				{
-					property="ModuleRespawnPosition_F_Name";
-					expression="_this setVariable ['Name',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"STRING"
-								};
-							};
-							value="";
-						};
-					};
-				};
-				class Attribute2
-				{
-					property="ModuleRespawnPosition_F_Side";
-					expression="_this setVariable ['Side',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"STRING"
-								};
-							};
-							value="1";
-						};
-					};
-				};
-				class Attribute3
-				{
-					property="ModuleRespawnPosition_F_Type";
-					expression="_this setVariable ['Type',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"STRING"
-								};
-							};
-							value="0";
-						};
-					};
-				};
-				nAttributes=4;
-			};
-		};
-		class Item49
-		{
 			dataType="Marker";
 			position[]={13731.559,15.90578,15562.471};
 			name="objHold";
@@ -4743,7 +4650,7 @@ class Mission
 			b=25;
 			id=545;
 		};
-		class Item50
+		class Item49
 		{
 			dataType="Marker";
 			position[]={13505.7,19.147095,15422.047};
@@ -4755,7 +4662,7 @@ class Mission
 			b=25;
 			id=547;
 		};
-		class Item51
+		class Item50
 		{
 			dataType="Marker";
 			position[]={13708.514,12.221114,15424.428};
@@ -4767,7 +4674,7 @@ class Mission
 			b=25;
 			id=548;
 		};
-		class Item52
+		class Item51
 		{
 			dataType="Marker";
 			position[]={13914.184,8.1998024,15414.906};
@@ -4779,7 +4686,7 @@ class Mission
 			b=25;
 			id=549;
 		};
-		class Item53
+		class Item52
 		{
 			dataType="Marker";
 			position[]={14133.659,2.8506393,15403.956};

@@ -1,5 +1,6 @@
 if(!isServer) exitWith {};
 
+// Load call parameters
 _pos=	(_this select 0);
 _pos0=	(_pos select 0);
 _pos1=	(_pos select 1);
@@ -14,47 +15,25 @@ sleep 0.5;
 _holder = createVehicle ["groundweaponholder",[_pos0,_pos1,(getposATL _BARREL select 2) + 0.05], [], 0, "can_Collide"];
 deletevehicle _BARREL;
 
-_rarityHighlyCommon = 30;
-_rarityCommon = 38;
-_rarityUncommon = 11;
-_rarityHighlyUncommon = 11;
-_rarityRare = 7; //4
-_rarityExtremelyRare = 3; //1
-
-_hundredMinusCommon = _rarityHighlyCommon + _rarityCommon;
-_hundredMinusUncommon = _hundredMinusCommon + _rarityUncommon;
-_hundredMinusHighlyUncommon = _hundredMinusUncommon + _rarityHighlyUncommon;
-_hundredMinusRare = _hundredMinusHighlyUncommon + _rarityRare;
-_hundredMinusExtremelyRare = _hundredMinusRare + _rarityExtremelyRare;
-
-_rarity = 0;
+// Determine class of rarity
+_rarity = "highly common";
 _randomizeRarity =floor (random 100);
-if (_randomizeRarity > (100-_rarityHighlyCommon)) then {
-	_rarity = 0; // Highly common
+if (_randomizeRarity > (100-rarityHighlyCommon)) then {
+	_rarity = "highly common";
+} else { if (_randomizeRarity > (100-hundredMinusCommon)) then {
+    _rarity = "common";
+} else { if (_randomizeRarity > (100-hundredMinusUncommon)) then {
+    _rarity = "uncommon";
+} else { if (_randomizeRarity > (100-hundredMinusHighlyUncommon)) then {
+    _rarity = "highly uncommon";
+} else { if (_randomizeRarity > (100-hundredMinusRare)) then {
+    _rarity = "rare"; 
+} else { if (_randomizeRarity > (100-hundredMinusExtremelyRare)) then {
+    _rarity = "extremely rare";
 } else {
-	if (_randomizeRarity > (100-_hundredMinusCommon)) then {
-		_rarity = 1; // Common
-	} else {
-		if (_randomizeRarity > (100-_hundredMinusUncommon)) then {
-			_rarity = 2; // Uncommon
-		} else {
-			if (_randomizeRarity > (100-_hundredMinusHighlyUncommon)) then {
-				_rarity = 3; // Highly uncommon
-			} else {
-				if (_randomizeRarity > (100-_hundredMinusRare)) then {
-					_rarity = 4; // Rare
-				} else {
-					if (_randomizeRarity > (100-_hundredMinusExtremelyRare)) then {
-						_rarity = 5; // Extremely rare
-					} else {
-						// Someone can't count to 100
-						_rarity = 0; // Highly common type by default
-					};
-				};
-			};
-		};
-	};
-};
+    // Someone can't count to 100
+    _rarity = "highly common"; // Highly common type by default
+}; }; }; }; }; }; // No else if statement, so we get this poor looking nested if. A switch statement might work here.
 
 showMarker = {
 	private ["_marker"];
@@ -76,18 +55,24 @@ spawnItem = {
 		// Spawn weapon
 		case "weapon": {
 			_weapon= _this select 0;
-			//_magazines = getArray (configFile / "CfgWeapons" / _weapon / "magazines");
-			//_magazineClass = _magazines call bis_fnc_selectRandom; 
 			_holder addWeaponCargoGlobal [_weapon, 1];
-			//_holder addMagazineCargoGlobal [_magazineClass, 2];
+            // If we had wanted mags to come with the weapon
+            /*
+            _magazines = getArray (configFile / "CfgWeapons" / _weapon / "magazines");
+			_magazineClass = _magazines call bis_fnc_selectRandom; 
+			_holder addMagazineCargoGlobal [_magazineClass, 2];
+            */
             _markerType = "W";
 		};
 		// Spawn magazines using weapon name
 		case "weapon_mag": {
-			//_weapon= _this select 0;
-			//_magazines = getArray (configFile / "CfgWeapons" / _weapon / "magazines");
-			//_magazineClass = _magazines call bis_fnc_selectRandom; 
-			//_holder addMagazineCargoGlobal [_magazineClass, 2];
+            // Haven't gotten this working
+			/*
+            _weapon= _this select 0;
+			_magazines = getArray (configFile / "CfgWeapons" / _weapon / "magazines");
+			_magazineClass = _magazines call bis_fnc_selectRandom; 
+			_holder addMagazineCargoGlobal [_magazineClass, 2];
+            */
             _markerType = "AW";
 		};
 		// Spawn magazines
@@ -116,9 +101,9 @@ spawnItem = {
 			_holder addBackpackCargoGlobal [_backpack, 1];
             _markerType = "B";
 		};
-		default {hint "Let Fritz know something went wrong!"};
 	};
     
+    // Creates debugging markers if flagged on
     if (_showLootType && _showLootRarity) then {
         _markerCombined = format ["%1%2", _rarity, _markerType];
         [_markerCombined] call showMarker;
@@ -135,53 +120,13 @@ spawnItem = {
 
 // Spawn selected type
 switch (_rarity) do {
-	// Highly common
-	case 0: {
-		_item = selectRandom itemsHighlyCommon;
-		_name = _item select 0;
-		_type = _item select 1;
-		[_name,_type] call spawnItem;
-	};
-	
-	// Common
-	case 1: {
-		_item = selectRandom itemsCommon;
-		_name = _item select 0;
-		_type = _item select 1;
-		[_name,_type] call spawnItem;
-		
-	};
-	
-	// Uncommon 
-	case 2: {
-		_item = selectRandom itemsUncommon;
-		_name = _item select 0;
-		_type = _item select 1;
-		[_name,_type] call spawnItem;
-	};
-	
-	// Highly uncommon
-	case 3: {
-		_item = selectRandom itemsHighlyUncommon;
-		_name = _item select 0;
-		_type = _item select 1;
-		[_name,_type] call spawnItem;
-	};
-	
-	// Rare
-	case 4: {
-		_item = selectRandom itemsRare;
-		_name = _item select 0;
-		_type = _item select 1;
-		[_name,_type] call spawnItem;
-	};
-	
-	// Extremely rare
-	case 5: {
-		_item = selectRandom itemsExtremelyRare;
-		_name = _item select 0;
-		_type = _item select 1;
-		[_name,_type] call spawnItem;
-	};
-	default {hint "Let Fritz know something went wrong!"};
+	case "highly common":   { _item = selectRandom itemsHighlyCommon; };
+	case "common":          { _item = selectRandom itemsCommon; };
+	case "uncommon":        { _item = selectRandom itemsUncommon; };
+	case "highly uncommon": { _item = selectRandom itemsHighlyUncommon; };
+	case "rare":            { _item = selectRandom itemsRare; };
+	case "extremely rare":  { _item = selectRandom itemsExtremelyRare; };
 };
+_name = _item select 0;
+_type = _item select 1;
+[_name,_type] call spawnItem;

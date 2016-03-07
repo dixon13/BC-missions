@@ -1,124 +1,108 @@
 if (!isServer) exitWith {};
 
-// Set probability of loot spawning 1-100%
-_probability=100; //default 25
+_probability   = 100; // default 100: probability of loot spawning in %
+_maxItemSpawns = 100; // default 8: max amount of spawns per building, which is limited by buildingpos number
 
-// Set the max amount of spawns per building
-_maxItemSpawns = 100; // default 8
+// Show loot marker on map for debugging
+_showLootType   = false;
+_showLootRarity = false;
 
-// Show loot position and type on map (Debugging)
-_showLootType=false;
-_showLootRarity=false;
-
-itemsHighlyCommon = [["Binocular", "item"],
-					 ["FirstAidKit", "item"],
-					 ["B_AssaultPack_blk", "backpack"],
-					 ["B_Carryall_mcamo", "backpack"],
-					 ["B_FieldPack_blk", "backpack"],
-					 ["MNP_B_ROK_KB", "backpack"],
-					 ["MNP_B_RU1_FP", "backpack"],
-					 ["Chemlight_green", "item"],
-					 ["Chemlight_blue", "item"],
-					 ["Chemlight_red", "item"],
-					 ["Chemlight_yellow", "item"],
-					 ["MNP_Vest_USMC_Xtreme_A", "vest"],
-					 ["MNP_Vest_UKR_A", "vest"],
-                     ["acc_flashlight", "item"],
-                     ["rhs_acc_2dpZenit", "item"]
-					];
-
-/* Unused commons
-["B_AssaultPack_cbr", "backpack"],
-					 ["B_AssaultPack_khk", "backpack"],
-["B_Carryall_cbr", "backpack"],
-					 ["B_Carryall_khk", "backpack"],
-["B_FieldPack_cbr", "backpack"],
-					 ["B_FieldPack_khk", "backpack"],
-*/
-
-// struct for desire to be able to set individual probabilities under a class of rarity
-/*itemsStructure = [
+// struct to be able to set individual probabilities under a class of rarity.
+// eventually we won't need classes of rarity because everything has it's own.
+/*
+itemsStructure = [
     [80, ["name", "type"]],
     [20, ["name", "type"]]
-];*/
+];
+*/
+
+// Probability of each class of item being spawned. Should total 100.
+rarityHighlyCommon   = 30;
+rarityCommon         = 38;
+rarityUncommon       = 11;
+rarityHighlyUncommon = 11;
+rarityRare           = 7;
+rarityExtremelyRare  = 3;
+
+// Determine what rarity class this item fits into
+minusCommon         = rarityHighlyCommon  + rarityCommon;
+minusUncommon       = minusCommon         + rarityUncommon;
+minusHighlyUncommon = minusUncommon       + rarityHighlyUncommon;
+minusRare           = minusHighlyUncommon + rarityRare;
+minusExtremelyRare  = minusRare           + rarityExtremelyRare;
+
+itemsHighlyCommon = [
+    ["Binocular", "item"],
+    ["FirstAidKit", "item"],
+    ["B_AssaultPack_blk", "backpack"],
+    ["B_Carryall_mcamo", "backpack"],
+    ["B_FieldPack_blk", "backpack"],
+    ["MNP_B_ROK_KB", "backpack"],
+    ["MNP_B_RU1_FP", "backpack"],
+    ["Chemlight_green", "item"],
+    ["Chemlight_blue", "item"],
+    ["Chemlight_red", "item"],
+    ["Chemlight_yellow", "item"],
+    ["MNP_Vest_USMC_Xtreme_A", "vest"],
+    ["MNP_Vest_UKR_A", "vest"],
+    ["acc_flashlight", "item"],
+    ["rhs_acc_2dpZenit", "item"]
+];
 
 itemsCommon = [
-			   ["rhs_mag_30Rnd_556x45_Mk318_Stanag", "mag"],
-			   ["rhs_30Rnd_762x39mm", "mag"]
-			  ];
-/*No pistol shit for now
-               ["rhsusf_weap_m1911a1", "weapon"],
-               ["rhsusf_mag_7x45acp_MHP", "mag"],
-			   ["rhs_weap_makarov_pmm", "weapon"],
-               ["rhs_mag_9x18_12_57N181S", "mag"]
-*/
-                //["30Rnd_556x45_Stanag_Tracer_Red", "mag"],
-				 //["rhs_weapon_240B", "mag"],
-				 /*["rhs_weap_m16a4", "weapon_mag"],
-			   ["rhs_weap_249_pip", "weapon_mag"],
-				 ["rhs_weapon_pkp", "mag"]
-			   ["muzzle_snds_M", "item"],
-			   ["muzzle_snds_L", "item"],
-			   ["muzzle_snds_H_SW", "item"],
-			   ["muzzle_snds_H_MG", "item"],
-			   ["muzzle_snds_H", "item"],
-			   ["muzzle_snds_B", "item"],
-			   ["optic_Arco", "item"],
-			   ["optic_Aco", "item"],
-			   ["optic_Holosight", "item"],
-			   ["optic_Yorris", "item"],
-			   ["muzzle_snds_acp", "item"]
-*/
+    ["rhs_mag_30Rnd_556x45_Mk318_Stanag", "mag"],
+    ["rhs_30Rnd_762x39mm", "mag"]
+];
 
 itemsUncommon = [
-				 ["Rangefinder", "item"],
-				 ["ToolKit", "item"],
-				 ["MediKit", "item"],
-				 ["ItemGPS", "item"],
-                 ["rhs_acc_pso1m2", "item"],
-                 ["rhsusf_acc_rotex5_grey", "item"],
-                 ["rhsusf_acc_ACOG_USMC", "item"],
-                 ["rhsusf_acc_harris_bipod", "item"],
-                 ["SmokeShell", "item"],
-			     ["HandGrenade", "item"],
-			     ["MiniGrenade", "item"]
-				];
+    ["Rangefinder", "item"],
+    ["ToolKit", "item"],
+    ["MediKit", "item"],
+    ["ItemGPS", "item"],
+    ["rhs_acc_pso1m2", "item"],
+    ["rhsusf_acc_rotex5_grey", "item"],
+    ["rhsusf_acc_ACOG_USMC", "item"],
+    ["rhsusf_acc_harris_bipod", "item"],
+    ["SmokeShell", "item"],
+    ["HandGrenade", "item"],
+    ["MiniGrenade", "item"]
+];
 
-itemsHighlyUncommon = [["rhs_weap_ak103", "weapon"],
-				       ["rhs_weap_akm", "weapon"],
-                       ["rhs_weap_akms", "weapon"],
-				       ["rhs_weap_m16a4", "weapon"],
-				       ["rhs_weap_m4", "weapon"],
-				       ["rhs_weap_m4_carryhandle", "weapon"]
-					  ];
+itemsHighlyUncommon = [
+    ["rhs_weap_ak103", "weapon"],
+    ["rhs_weap_akm", "weapon"],
+    ["rhs_weap_akms", "weapon"],
+    ["rhs_weap_m4_carryhandle", "weapon"],
+    ["rhs_weap_m4a1_carryhandle", "weapon"],
+    ["rhs_weap_m16a4_carryhandle", "weapon"]
+];
 
-itemsRare = [["NVGoggles", "item"],
-             ["rhs_10Rnd_762x54mmR_7N1", "mag"],
-             ["rhsusf_100Rnd_556x45_M200_soft_pouch", "mag"],
-             ["rhs_100Rnd_762x54mmR", "mag"]
-            ];
-//["DemoCharge_F", "item"],
-//["SatchelCharge_F", "item"],
+itemsRare = [
+    ["NVGoggles", "item"],
+    ["rhs_10Rnd_762x54mmR_7N1", "mag"],
+    ["rhsusf_100Rnd_556x45_M200_soft_pouch", "mag"],
+    ["rhs_100Rnd_762x54mmR", "mag"]
+];
 
-itemsExtremelyRare = [["rhs_weap_M136_hedp", "weapon"],
-					  ["rhs_weap_svd", "weapon"],
-                      ["rhs_weap_m249_pip_S", "weapon"],
-                      ["rhs_weap_pkp", "weapon"]
-                     ];
-//["rhs_weap_svdp_wd", "weapon"],
-
+itemsExtremelyRare = [
+    ["rhs_weap_M136_hedp", "weapon"],
+    ["rhs_weap_svd", "weapon"],
+    ["rhs_weap_m249_pip_L", "weapon"],
+    ["rhs_weap_pkp", "weapon"]
+];
 
 // Exclude buildings from loot spawn. Use 'TYPEOF' to find building name
-_exclusionList=[];//	["Land_Pier_F","Land_Pier_small_F","Land_NavigLight","Land_LampHarbour_F"];
+_exclusionList=[];
+//["Land_Pier_F","Land_Pier_small_F","Land_NavigLight","Land_LampHarbour_F"];
 
 private ["_distance","_houseList"];
-_mkr=(_this select 0);
+_mkr = (_this select 0);
 _mkr setmarkerAlpha 0;
-_pos=markerpos _mkr;
+_pos = markerpos _mkr;
 _mkrY= getmarkerSize _mkr select 0;
 _mkrX= getmarkerSize _mkr select 1;
 
-_distance=_mkrX;
+_distance = _mkrX;
 if (_mkrY > _mkrX) then {
 	_distance=_mkrY;
 };
