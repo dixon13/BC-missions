@@ -174,11 +174,13 @@ moveTriggersAndMarkers = {
             _objHold setMarkerBrush "SolidBorder";
             _objHold setMarkerColor "ColorUNKNOWN";
             
+            _colorSeize = ["blueSeize", "redSeize", "greenSeize", "purpleSeize"];
             {
                 _x setMarkerPos _objPos;
                 _x setMarkerSize [sizeOfObjHold, sizeOfObjHold];
                 _x setMarkerAlpha 0;
-            } forEach ["blueSeize", "redSeize", "greenSeize", "purpleSeize"];
+                false
+            } count (_colorSeize);
         };
     };
     
